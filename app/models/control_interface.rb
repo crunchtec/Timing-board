@@ -24,6 +24,13 @@ class ControlInterface
     @configuration_table[:channel_a_polarity] = "NORM"
     @configuration_table[:step_size] = "10"
     @configuration_table[:step_size_list] = ["1", "10", "100", "1000"]
+    @configuration_table[:command_history] = []
+    @configuration_table[:response_time] = ""
+    @configuration_table[:last_response_from_qc_board] = ""
+    configuration_table
+  end
+
+  def all
     configuration_table
   end
 
@@ -53,6 +60,14 @@ class ControlInterface
 
   def read(parameter)
     configuration_table[parameter]
+  end
+
+  def add_to_command_history(command)
+    @configuration_table[:command_history].unshift(command)
+  end
+
+  def empty_command_history
+    @configuration_table[:command_history].clear
   end
 
 end

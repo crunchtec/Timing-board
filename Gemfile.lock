@@ -1,0 +1,37 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.1)
+    ffi (1.9.14)
+    method_source (0.8.2)
+    minitest (5.9.1)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    rack (1.6.5)
+    rack-protection (1.5.3)
+      rack
+    rubyserial (0.4.0)
+      ffi (~> 1.9, >= 1.9.3)
+    shotgun (0.9.2)
+      rack (>= 1.0)
+    sinatra (1.4.7)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    slop (3.6.0)
+    tilt (2.0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest
+  pry
+  rubyserial
+  shotgun
+  sinatra
+
+BUNDLED WITH
+   1.13.6

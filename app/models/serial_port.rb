@@ -23,7 +23,6 @@ class SerialPort
 
   def qc_initialize
     @sp = Serial.new QC_USB, 38400
-    binding.pry
     patience(init_delay)
     command = ":SYST:COMM:SER:USB 115200"
     write(prepare(command))
@@ -45,6 +44,8 @@ class SerialPort
       patience(0.1 * retry_counter)
       retry_counter += 1
     end
+    return "Exceeded number of retries. Initializing the QC Board FAILED!!!" unless retry_counter < no_of_retries
+    "QC Board initialization COMPLETED..."
   end
 
   def write(command)

@@ -1,8 +1,8 @@
 1. Exception handling for connection error, command send/receipt was unsuccessful, etc.
 2. Interface to be available and code still launch even when QC is not connected and/or not available for any reason
-3. Switch to all local CSS, JS and FONT files
+3. Switch to all local CSS, JS and FONT files => COMPLETED
 4. Move JS code from index.erb into separate file
 5. Save settings into file
 6. Load settings from file
 7. Control interface debouncing
-8. HTTP POST instead of HTTP GET
+8. HTTP POST instead of HTTP GET => IN PROGRESS
