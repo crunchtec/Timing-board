@@ -1,26 +1,30 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require 'pry'
 
 require_relative '../models/serial_port'
 require 'benchmark'
 require_relative '../models/control_interface'
-# require 'pry'
+require_relative '../models/definitions'
 
 
 # class QcControllerApp < Sinatra::Base
   set :root, File.expand_path("..", __dir__)
   set :method_override, true
-  set :bind, '0.0.0.0'
+  # set :bind, '0.0.0.0'
 
-  PARAM_CONTROL = {"main_switch_status" => :main_switch_status,
-                  "main_switch" => :main_switch,
-                  "channel_a_delay" => :channel_a_delay,
-                  "channel_a_name_custom" => :channel_a_name_custom}
+  include Definitions
+  # PARAM_CONTROL = {"main_switch_status" => :main_switch_status,
+  #                 "main_switch" => :main_switch,
+  #                 "channel_a_delay" => :channel_a_delay,
+  #                 "channel_a_name_custom" => :channel_a_name_custom}
+  # MSG_NOT_CONNECTED = "Not Connected"
+  # HTML_HIDE = "hidden"
+  # HTML_SHOW = ""
+  # LABEL_WRONG = "warning"
 
-  serial_port = SerialPort.new
   control_interface = ControlInterface.new
-
+  serial_port = SerialPort.new
+  serial_port.connect
 
 
   def changed(control_interface, params)
@@ -40,6 +44,34 @@ require_relative '../models/control_interface'
     change_list
   end
 
+  def rebuild_control_interface(serial_port, control_interface)
+    if serial_port.sp.nil? || serial_port.closed?
+      control_interface.update(:serial_port_status, MSG_NOT_CONNECTED)
+      control_interface.update(:serial_port_status_label, LABEL_DANGER)
+      control_interface.update(:reconnect_button_show, HTML_SHOW)
+      control_interface.update(:send_command_access, DISABLED)
+      control_interface.update(:main_interface_access, DISABLED)
+    else
+      control_interface.update(:serial_port_status, MSG_CONNECTED)
+      control_interface.update(:serial_port_status_label, LABEL_SUCCESS)
+      control_interface.update(:reconnect_button_show, HTML_HIDE)
+      control_interface.update(:send_command_access, ENABLED)
+      control_interface.update(:main_interface_access, ENABLED)
+    end
+    {
+      :serial_response => control_interface.read(:last_response_from_qc_board),
+      :command_history_count => control_interface.read(:command_history).count,
+      :serial_port_status => control_interface.read(:serial_port_status),
+      :serial_port_status_label => control_interface.read(:serial_port_status_label),
+      :reconnect_button_show => control_interface.read(:reconnect_button_show),
+      :send_command_access => control_interface.read(:send_command_access),
+      :main_interface_access => control_interface.read(:main_interface_access)
+    }
+    
+    # puts "!!!!!!! Value of reconnect button: #{output[:reconnect_button_show]}"
+    # puts "!!!!!!! Value of send command: #{output[:send_command_access]}"
+  end
+
   get "/" do
     # switch_status = params["main_switch"]
     change_list = changed(control_interface, params)
@@ -49,9 +81,9 @@ require_relative '../models/control_interface'
     #Temporary stopgap if no board is connected
     # response_time = "Not available"
     # serial_response = "QC is not connected..."
-    
+    @interface = rebuild_control_interface(serial_port, control_interface)
+
     erb:index, :locals => {
-                          :serial_response => control_interface.read(:last_response_from_qc_board), 
                           :response_time => control_interface.read(:response_time),
                           :main_switch => control_interface.main_switch_status,
                           :main_switch_status => control_interface.main_switch_status,
@@ -76,6 +108,11 @@ require_relative '../models/control_interface'
 
   post "/deletehistory" do
     control_interface.empty_command_history
+    redirect '/'
+  end
+
+  post "/retryserialport" do
+    serial_port.connect
     redirect '/'
   end
 

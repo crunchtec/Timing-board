@@ -5,32 +5,32 @@
         <form id = "control-interface">
           <div class = "row col-md-12 main-switch-bar text-center">
             <label>Signal generator output: </label>
-            <input id = "main-switch" type = "checkbox" data-toggle = "toggle" <%= main_switch %> data-width = "300px" name = "main_switch">
-            <input id = "main-switch-status" type = "hidden" value = "<%= main_switch_status %>" name = "main_switch_status">
+            <input id = "main-switch" type = "checkbox" data-toggle = "toggle" <%= main_switch %> data-width = "300px" name = "main_switch" <%= @interface[:main_interface_access] %> />
+            <input id = "main-switch-status" type = "hidden" value = "<%= main_switch_status %>" name = "main_switch_status" />
           </div>
           <div class = "col-md-3">
             <table class = "text-center">
               <tbody>
                 <tr>
                   <td>
-                    <input id = "channel_a_name_custom" type="text" class="btn btn-lg" value = "<%= channel_a_name_custom %>" name = "channel_a_name_custom">
+                    <input id = "channel_a_name_custom" type="text" class="btn btn-lg" value = "<%= channel_a_name_custom %>" name = "channel_a_name_custom" <%= @interface[:main_interface_access] %> />
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <button id = "channel_a_delay_up" type="button" class="btn btn-default btn-lg">
+                    <button id = "channel_a_delay_up" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
                       <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                     </button>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <input id = "channel_a_delay_value" type="text" class="btn btn-lg" value = <%= channel_a_delay %> name = "channel_a_delay">
+                    <input id = "channel_a_delay_value" type="text" class="btn btn-lg" value = <%= channel_a_delay %> name = "channel_a_delay" <%= @interface[:main_interface_access] %> />
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <button id = "channel_a_delay_down" type="button" class="btn btn-default btn-lg">
+                    <button id = "channel_a_delay_down" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
                       <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                     </button>
                   </td>
@@ -46,19 +46,22 @@
         <div class = "col-md-6">
           <form class = "form-inline" action = "/send" method = "POST">
             <div class = "form-group">
-              <input class = "form-control" type='text' name='command' id = "any-command"/>
+              <input class = "form-control" type='text' name='command' id = "any-command" <%= @interface[:send_command_access] %> />
             </div>
-            <button class = "btn btn-default" type = "submit">Send command</button>
+            <button class = "btn btn-default" type = "submit" <%= @interface[:send_command_access] %>>Send command</button>
           </form>
         </div>
-        <div class = "col-md-6">
+        <div class = "col-md-6 text-right">
           <form class = "form-inline" action = "/deletehistory" method = "POST">
-            <button class = "btn btn-danger" type = "submit">Delete command history</button>
+            <button class = "btn btn-danger" type = "submit">
+              Delete command history
+              <span class="badge"><%= @interface[:command_history_count] %></span>
+            </button>
           </form>
         </div>
         <div class = "form-group">
           <label>Command history:</label>
-          <select class = "form-control" size = "5" id = "command-history">
+          <select class = "form-control" size = "5" id = "command-history" <%= @interface[:send_command_access] %>>
             <% command_history.each do |command|%>
             <option><%= command %></option>
             <% end %>
@@ -68,10 +71,13 @@
       </div>
       <div class = "row">
         <div class = "col-md-6 text-left">
-          <p> Response time: <%= response_time %></p>
+          <span class = "label label-<%= @interface[:serial_port_status_label] %>"> Serial port status: <%= @interface[:serial_port_status] %></span>
+          <form class = "form" action = "/retryserialport" method = "POST"  <%= @interface[:reconnect_button_show] %>>
+            <button class = "serial-button btn btn-xs btn-warning" id = "reconnect-button" type = "submit">Reconnect</button>
+          </form>
         </div>
         <div class = "col-md-6 text-right">
-          <p> Last response from serial port: <%= serial_response %></p>
+          <p> Last response from serial port: <%= @interface[:serial_response] %></p>
         </div>
       </div>
     </div>

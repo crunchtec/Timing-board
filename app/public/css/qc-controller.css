@@ -1,3 +1,7 @@
 .main-switch-bar {
   width: 100%;
 }
+
+.serial-button {
+  display: inline-block;
+}

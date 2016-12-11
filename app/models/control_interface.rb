@@ -1,6 +1,8 @@
-require 'pry'
+require_relative 'definitions'
 
 class ControlInterface
+  include Definitions
+
   attr_reader :configuration_table
 
   def initialize
@@ -27,6 +29,11 @@ class ControlInterface
     @configuration_table[:command_history] = []
     @configuration_table[:response_time] = ""
     @configuration_table[:last_response_from_qc_board] = ""
+    @configuration_table[:serial_port_status_label] = LABEL_DANGER
+    @configuration_table[:serial_port_status] = MSG_NOT_CONNECTED
+    @configuration_table[:reconnect_button_show] = HTML_SHOW
+    @configuration_table[:send_command_access] = DISABLED
+    @configuration_table[:main_interface_access] = DISABLED 
     configuration_table
   end
 

@@ -22,16 +22,29 @@ class SerialPort
   end
 
   def qc_initialize
-    @sp = Serial.new QC_USB, 38400
-    patience(init_delay)
-    command = ":SYST:COMM:SER:USB 115200"
-    write(prepare(command))
-    sp.close
-    @sp = Serial.new QC_USB, 115200
-    patience(init_delay)
-    command = "*IDN?"
-    expected_value = ACCEPTABLE_SYSTEM_INFO
-    write_until(command, expected_value, MAX_NO_OF_RETRIES)
+    begin
+      @sp = Serial.new QC_USB, 38400
+    rescue RubySerial::Exception => sp_error
+      puts sp.class
+      puts "First time calling Serial.new:"
+      puts sp_error.inspect
+      "NOK"
+    end
+    if sp_error.nil?
+      patience(init_delay)
+      command = ":SYST:COMM:SER:USB 115200"
+      write(prepare(command))
+      sp.close
+      @sp = Serial.new QC_USB, 115200
+      patience(init_delay)
+      command = "*IDN?"
+      expected_value = ACCEPTABLE_SYSTEM_INFO
+      write_until(command, expected_value, MAX_NO_OF_RETRIES)
+    end
+  end
+
+  def connect
+    qc_initialize
   end
 
   def patience(duration)
@@ -49,9 +62,16 @@ class SerialPort
   end
 
   def write(command)
-    sp.write(prepare(command))
-    patience(write_delay)
-    read
+    begin
+      sp.write(prepare(command))
+    rescue RubySerial::Exception => sp_error
+      puts "Serial command WRITE error!"
+      sp.close
+    end
+    if sp_error.nil?
+      patience(write_delay)
+      read
+    end
   end
 
   def read
