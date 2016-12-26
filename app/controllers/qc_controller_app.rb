@@ -58,7 +58,12 @@ require_relative '../models/definitions'
       :reconnect_button_show => control_interface.read(:reconnect_button_show),
       :send_command_access => control_interface.read(:send_command_access),
       :main_interface_access => control_interface.read(:main_interface_access),
-      :channel_a_delay => control_interface.read(:channel_a_delay)
+      :channel_a_delay => control_interface.read(:channel_a_delay),
+      :channel_a_delay_unit => control_interface.read(:channel_a_delay_unit),
+      :step_size_list => control_interface.read(:step_size_list),
+      :step_size => control_interface.read(:step_size),
+      :channel_a_delay_min => control_interface.read(:channel_a_delay_min),
+      :channel_a_delay_max => control_interface.read(:channel_a_delay_max)
     }
     
     # puts "!!!!!!! Value of reconnect button: #{output[:reconnect_button_show]}"
@@ -66,8 +71,8 @@ require_relative '../models/definitions'
   end
 
   get "/" do
-    change_list = changed(control_interface, params)
-    puts "List of changed parameters: #{change_list}"
+    # change_list = changed(control_interface, params)
+    # puts "List of changed parameters: #{change_list}"
 
     @interface = rebuild_control_interface(serial_port, control_interface)
 
@@ -81,7 +86,15 @@ require_relative '../models/definitions'
                           }
   end
 
+  post "/" do
+    # require 'pry'; binding.pry
+    change_list = changed(control_interface, params)
+    puts "List of changed parameters: #{change_list}"    
+    redirect "/"
+  end
+
   post "/send" do
+    change_list = changed(control_interface, params)
     serial_response = send_serial_command(serial_port, params["command"])
     control_interface.update(:last_response_from_qc_board, serial_response)
     control_interface.add_to_command_history(params["command"])

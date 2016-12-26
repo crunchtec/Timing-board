@@ -1,8 +1,9 @@
 1. COMPLETED: Exception handling for connection error, command send/receipt was unsuccessful, etc. => COMPLETED, ready for beta testing
 2. COMPLETED: Interface to be available and code still launch even when QC is not connected and/or not available for any reason => COMPLETED, ready for beta testing
 3. COMPLETED: Switch to all local CSS, JS and FONT files => COMPLETED
-4. Move JS code from index.erb into separate file
+4. COMPLETED: Move JS code from index.erb into separate file => COMPLETED
 5. Save settings into file
 6. Load settings from file
 7. Control interface debouncing
-8. 90% DONE: HTTP POST instead of HTTP GET => IN PROGRESS
+8. COMPLETED: HTTP POST instead of HTTP GET => COMPLETED
+9. Implement delay config interface vs. command list

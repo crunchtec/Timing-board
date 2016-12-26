@@ -9,6 +9,10 @@ class ControlInterface
     set_default
   end
 
+  def set_default_channel_a
+    #might use later on...
+  end
+
   def set_default
     @configuration_table = {}
     @configuration_table[:main_switch] = "false"

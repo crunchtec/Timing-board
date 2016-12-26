@@ -19,7 +19,7 @@
         <div class="col-xs-3"> <!-- required for floating -->
           <!-- Nav tabs -->
           <ul class="nav nav-tabs tabs-left">
-            <li class="active"><a href="#home" data-toggle="tab">Channel A</a>
+            <li class="active"><a href="#home" data-toggle="tab">A | <%= @interface[:channel_a_delay] %> ns</a>
             </li>
             <li><a href="#profile" data-toggle="tab">TBD</a></li>
             <li><a href="#messages" data-toggle="tab">TBD</a></li>
@@ -33,7 +33,7 @@
             <div class="tab-pane active" id="home">
             
             
-        <form id = "control-interface">
+        <form id = "control-interface" action = "/" method = "POST">
           <div class = "col-md-12">
             <table class = "text-center">
               <tbody>
@@ -43,22 +43,57 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td rowspan = "<%= @interface[:step_size_list].count %>">
+                      <input id = "channel_a_delay_value" type="number" class="btn btn-lg" value = <%= @interface[:channel_a_delay] %> name = "channel_a_delay" <%= @interface[:main_interface_access] %> min = "<%= @interface[:channel_a_delay_min] %>" max = "<%= @interface[:channel_a_delay_max] %>" />
+                      <label><%= @interface[:channel_a_delay_unit] %></label>
+                  </td>
+                  <td rowspan = "2">
                     <button id = "channel_a_delay_up" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
                       <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                     </button>
                   </td>
-                </tr>
-                <tr>
                   <td>
-                    <input id = "channel_a_delay_value" type="text" class="btn btn-lg" value = <%= @interface[:channel_a_delay] %> name = "channel_a_delay" <%= @interface[:main_interface_access] %> />
+                    <div class="radio text-left">
+                      <label>
+                        <input type="radio" name="step_size" id="step_size_0" value="<%= @interface[:step_size_list][0] %>" <%= "checked" if @interface[:step_size].eql?(@interface[:step_size_list][0])%>>
+                        <%= @interface[:step_size_list][0] %>
+                      </label>
+                    </div>
                   </td>
                 </tr>
                 <tr>
                   <td>
+                    <div class="radio text-left">
+                      <label>
+                        <input type="radio" name="step_size" id="step_size_1" value="<%= @interface[:step_size_list][1] %>" <%= "checked" if @interface[:step_size].eql?(@interface[:step_size_list][1])%>>
+                        <%= @interface[:step_size_list][1] %>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td rowspan = "2">
                     <button id = "channel_a_delay_down" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
                       <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                     </button>
+                  </td>
+                  <td>
+                    <div class="radio text-left">
+                      <label>
+                        <input type="radio" name="step_size" id="step_size_2" value="<%= @interface[:step_size_list][2] %>" <%= "checked" if @interface[:step_size].eql?(@interface[:step_size_list][2])%>>
+                        <%= @interface[:step_size_list][2] %>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="radio text-left">
+                      <label>
+                        <input type="radio" name="step_size" id="step_size_3" value="<%= @interface[:step_size_list][3] %>" <%= "checked" if @interface[:step_size].eql?(@interface[:step_size_list][3])%>>
+                        <%= @interface[:step_size_list][3] %>
+                      </label>
+                    </div>
                   </td>
                 </tr>
               </tbody>

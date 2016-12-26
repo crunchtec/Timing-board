@@ -37,29 +37,10 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap-toggle.min.js"></script>
+    <script src="/js/qc-controller-main.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>-->
-
-<script>
-  $(function() {
-    $('#control-interface-main-switch').change(function() {
-      if ($('#main-switch').prop('checked') == true) {
-        $('#main-switch-status').val('checked');
-      } else {
-        $('#main-switch-status').val('unchecked');
-      }
-      $(this).submit();
-    });
-    $('#control-interface').change(function() {
-      $(this).submit();
-    });
-    $('#command-history').change(function() {
-      $('#any-command').val($(this).val());
-      $('#any-command').focus();
-    });
-  });
-</script>
 
   </body>
 </html>

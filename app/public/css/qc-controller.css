@@ -5,3 +5,12 @@
 .serial-button {
   display: inline-block;https://github.com/dbtek/bootstrap-vertical-tabs.git
 }
+
+input#channel_a_delay_value {
+  font-size: 5em;
+}
+
+input#channel_a_delay_value::-webkit-outer-spin-button, input#channel_a_delay_value::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
