@@ -6,12 +6,21 @@
 
     <div class="row" style="min-height:600px;">
       <div  class="col-sm-12">
-        <h3>Left Tabs</h3>
+        <form id = "control-interface-main-switch" action = "/mainswitch" method = "POST">
+          <div class = "row col-md-12 main-switch-bar text-center">
+            <label>Main output: </label>
+            <input id = "main-switch" type = "checkbox" data-toggle = "toggle" <%= main_switch %> data-width = "300px" name = "main_switch" <%= @interface[:main_interface_access] %> />
+            <input id = "main-switch-status" type = "hidden" value = "<%= main_switch_status %>" name = "main_switch_status" />
+          </div>
+        </form>
+
+
         <hr/>
         <div class="col-xs-3"> <!-- required for floating -->
           <!-- Nav tabs -->
           <ul class="nav nav-tabs tabs-left">
-            <li class="active"><a href="#home" data-toggle="tab">Channel A</a></li>
+            <li class="active"><a href="#home" data-toggle="tab">Channel A</a>
+            </li>
             <li><a href="#profile" data-toggle="tab">TBD</a></li>
             <li><a href="#messages" data-toggle="tab">TBD</a></li>
             <li><a href="#settings" data-toggle="tab">TBD</a></li>
@@ -25,12 +34,7 @@
             
             
         <form id = "control-interface">
-          <div class = "row col-md-12 main-switch-bar text-center">
-            <label>Signal generator output: </label>
-            <input id = "main-switch" type = "checkbox" data-toggle = "toggle" <%= main_switch %> data-width = "300px" name = "main_switch" <%= @interface[:main_interface_access] %> />
-            <input id = "main-switch-status" type = "hidden" value = "<%= main_switch_status %>" name = "main_switch_status" />
-          </div>
-          <div class = "col-md-3">
+          <div class = "col-md-12">
             <table class = "text-center">
               <tbody>
                 <tr>
@@ -47,7 +51,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <input id = "channel_a_delay_value" type="text" class="btn btn-lg" value = <%= channel_a_delay %> name = "channel_a_delay" <%= @interface[:main_interface_access] %> />
+                    <input id = "channel_a_delay_value" type="text" class="btn btn-lg" value = <%= @interface[:channel_a_delay] %> name = "channel_a_delay" <%= @interface[:main_interface_access] %> />
                   </td>
                 </tr>
                 <tr>
@@ -60,9 +64,6 @@
               </tbody>
             </table>
           </div>
-          <div class = "col-md-3">Channel B</div>
-          <div class = "col-md-3">Channel C</div>
-          <div class = "col-md-3">Channel D</div>
         </form>
             
             

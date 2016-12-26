@@ -12,8 +12,8 @@ require_relative '../models/definitions'
   set :method_override, true
   # set :bind, '0.0.0.0'
 
-  include definitions
-  
+  include Definitions
+
   control_interface = ControlInterface.new
   serial_port = SerialPort.new
   serial_port.connect
@@ -57,7 +57,8 @@ require_relative '../models/definitions'
       :serial_port_status_label => control_interface.read(:serial_port_status_label),
       :reconnect_button_show => control_interface.read(:reconnect_button_show),
       :send_command_access => control_interface.read(:send_command_access),
-      :main_interface_access => control_interface.read(:main_interface_access)
+      :main_interface_access => control_interface.read(:main_interface_access),
+      :channel_a_delay => control_interface.read(:channel_a_delay)
     }
     
     # puts "!!!!!!! Value of reconnect button: #{output[:reconnect_button_show]}"
@@ -75,15 +76,24 @@ require_relative '../models/definitions'
                           :main_switch => control_interface.main_switch_status,
                           :main_switch_status => control_interface.main_switch_status,
                           :channel_a_name_custom => control_interface.channel_a_name_custom,
-                          :channel_a_delay => control_interface.channel_a_delay,
+                          # :channel_a_delay => control_interface.channel_a_delay,
                           :command_history => control_interface.read(:command_history)
                           }
   end
 
   post "/send" do
-    serial_response = serial_port.write(params["command"])
+    serial_response = send_serial_command(serial_port, params["command"])
     control_interface.update(:last_response_from_qc_board, serial_response)
     control_interface.add_to_command_history(params["command"])
+    redirect '/'
+  end
+
+  post "/mainswitch" do
+    change_list = changed(control_interface, params)
+    command = main_switch_command(control_interface.main_switch_status)
+    serial_response = send_serial_command(serial_port, command)
+    control_interface.update(:last_response_from_qc_board, serial_response)
+    control_interface.add_to_command_history(command)
     redirect '/'
   end
 
@@ -95,4 +105,15 @@ require_relative '../models/definitions'
   post "/retryserialport" do
     serial_port.connect
     redirect '/'
+  end
+
+  private
+
+  def send_serial_command(serial_port, command)
+    serial_port.write(command)
+  end
+
+  def main_switch_command(switch_status)
+    return MAIN_OUTPUT_ON if switch_status.eql?("checked")
+    return MAIN_OUTPUT_OFF if switch_status.eql?("unchecked")
   end

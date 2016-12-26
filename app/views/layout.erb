@@ -43,12 +43,15 @@
 
 <script>
   $(function() {
-    $('#control-interface').change(function() {
+    $('#control-interface-main-switch').change(function() {
       if ($('#main-switch').prop('checked') == true) {
         $('#main-switch-status').val('checked');
       } else {
         $('#main-switch-status').val('unchecked');
       }
+      $(this).submit();
+    });
+    $('#control-interface').change(function() {
       $(this).submit();
     });
     $('#command-history').change(function() {

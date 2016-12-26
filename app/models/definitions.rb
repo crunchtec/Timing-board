@@ -14,4 +14,7 @@ module Definitions
   ENABLED = ""
   DISABLED = "disabled"
 
+  #Serial Command Definitions:
+  MAIN_OUTPUT_ON = ":INST:STATE ON"
+  MAIN_OUTPUT_OFF = ":INST:STATE OFF"
 end
