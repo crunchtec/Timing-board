@@ -2,6 +2,28 @@
     <div class = "container">
       <div class = "row">
         <h1>QC Control Interface by Crunch Technologies</h1>
+
+
+    <div class="row" style="min-height:600px;">
+      <div  class="col-sm-12">
+        <h3>Left Tabs</h3>
+        <hr/>
+        <div class="col-xs-3"> <!-- required for floating -->
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs tabs-left">
+            <li class="active"><a href="#home" data-toggle="tab">Channel A</a></li>
+            <li><a href="#profile" data-toggle="tab">TBD</a></li>
+            <li><a href="#messages" data-toggle="tab">TBD</a></li>
+            <li><a href="#settings" data-toggle="tab">TBD</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-9">
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+            
+            
         <form id = "control-interface">
           <div class = "row col-md-12 main-switch-bar text-center">
             <label>Signal generator output: </label>
@@ -42,6 +64,23 @@
           <div class = "col-md-3">Channel C</div>
           <div class = "col-md-3">Channel D</div>
         </form>
+            
+            
+            
+            </div>
+            <div class="tab-pane" id="profile">Profile Tab.</div>
+            <div class="tab-pane" id="messages">Messages Tab.</div>
+            <div class="tab-pane" id="settings">Settings Tab.</div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+
+
+
+
       <div class = "row col-md-12">
         <div class = "col-md-6">
           <form class = "form-inline" action = "/send" method = "POST">

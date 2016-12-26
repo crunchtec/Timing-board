@@ -12,16 +12,8 @@ require_relative '../models/definitions'
   set :method_override, true
   # set :bind, '0.0.0.0'
 
-  include Definitions
-  # PARAM_CONTROL = {"main_switch_status" => :main_switch_status,
-  #                 "main_switch" => :main_switch,
-  #                 "channel_a_delay" => :channel_a_delay,
-  #                 "channel_a_name_custom" => :channel_a_name_custom}
-  # MSG_NOT_CONNECTED = "Not Connected"
-  # HTML_HIDE = "hidden"
-  # HTML_SHOW = ""
-  # LABEL_WRONG = "warning"
-
+  include definitions
+  
   control_interface = ControlInterface.new
   serial_port = SerialPort.new
   serial_port.connect
@@ -73,14 +65,9 @@ require_relative '../models/definitions'
   end
 
   get "/" do
-    # switch_status = params["main_switch"]
     change_list = changed(control_interface, params)
     puts "List of changed parameters: #{change_list}"
 
-
-    #Temporary stopgap if no board is connected
-    # response_time = "Not available"
-    # serial_response = "QC is not connected..."
     @interface = rebuild_control_interface(serial_port, control_interface)
 
     erb:index, :locals => {
@@ -95,13 +82,7 @@ require_relative '../models/definitions'
 
   post "/send" do
     serial_response = serial_port.write(params["command"])
-    # control_interface.update(:response_time, Benchmark.measure {
-    #             control_interface.update(:serial_response, serial_port.write(params["command"]))
-    #             })
     control_interface.update(:last_response_from_qc_board, serial_response)
-    # response_time = "Response time: #{response_time} second(s)"
-    # serial_response = serial_port.write(params["command"])
-    # serial_response = "Last reponse from QC board: #{serial_response}"
     control_interface.add_to_command_history(params["command"])
     redirect '/'
   end
@@ -115,5 +96,3 @@ require_relative '../models/definitions'
     serial_port.connect
     redirect '/'
   end
-
-# end
