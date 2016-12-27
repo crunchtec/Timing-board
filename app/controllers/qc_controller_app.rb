@@ -40,6 +40,18 @@ require_relative '../models/definitions'
     send_serial_command(serial_port, control_interface, command)
   end
 
+  def set_channel_b_delay(serial_port, control_interface)
+    command = "#{P2_DELAY} #{control_interface.read(:channel_b_delay)}e-9"
+    send_serial_command(serial_port, control_interface, command)
+    get_channel_b_delay(serial_port, control_interface)
+    puts command.inspect
+  end
+
+  def get_channel_b_delay(serial_port, control_interface)
+    command = "#{P2_DELAY}?"
+    send_serial_command(serial_port, control_interface, command)
+  end
+
   def changed(control_interface, params)
     change_list = {}
     params.keys.map do |param|

@@ -21,7 +21,8 @@ module Definitions
   DISABLED = "disabled"
   CONVERT_TO_NANOSECOND = 0.000000001
 
-  INTERFACE_SERIAL_CONTROL = {:channel_a_delay => "set_channel_a_delay"
+  INTERFACE_SERIAL_CONTROL = {:channel_a_delay => "set_channel_a_delay",
+                              :channel_b_delay => "set_channel_b_delay"
                               }
 
   #Default value definitions
