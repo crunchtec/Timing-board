@@ -13,3 +13,4 @@
 13. Implement MORE configuration options vs. command list
 14. Implement sending initial config list to QC controller
 15. Remove last serial response from bottom status bar
+16. Fix corner case when deleting number completely from text box

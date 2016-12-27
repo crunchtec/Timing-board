@@ -26,57 +26,57 @@
                     </td>
                   </tr>
                   <tr>
-                    <td rowspan = "<%= @interface[:delay_step_size_list].count %>">
-                      <input id = "channel_a_delay_value" type="number" class="btn btn-lg" value = <%= @interface[:channel_a_delay] %> name = "channel_a_delay" <%= @interface[:main_interface_access] %> min = "<%= @interface[:channel_a_delay_min] %>" max = "<%= @interface[:channel_a_delay_max] %>" />
-                      <label for = "channel_a_delay_value" class = "delay-unit"><%= @interface[:channel_a_delay_unit] %></label>
+                    <td rowspan = "<%= @interface[:width_step_size_list].count %>">
+                      <input id = "channel_a_width_value" type="number" class="btn btn-lg" value = <%= @interface[:channel_a_width] %> name = "channel_a_width" <%= @interface[:main_interface_access] %> min = "<%= @interface[:channel_a_width_min] %>" max = "<%= @interface[:channel_a_width_max] %>" />
+                      <label for = "channel_a_width_value" class = "width-unit"><%= @interface[:channel_a_width_unit] %></label>
                     </td>
                     <td rowspan = "2">
-                      <button id = "channel_a_delay_up" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                      <button id = "channel_a_width_up" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
                         <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                       </button>
                     </td>
-                    <td class = "delay-steps">
+                    <td class = "width-steps">
                       <div class="radio text-left">
                         <label>
-                          <input type="radio" name="channel_a_delay_step_size" id="channel_a_delay_step_size_0" value="<%= @interface[:delay_step_size_list][0] %>" <%= "checked" if @interface[:channel_a_delay_step_size].eql?(@interface[:delay_step_size_list][0])%> <%= @interface[:main_interface_access] %> >
-                          <%= @interface[:delay_step_size_list][0] %>
+                          <input type="radio" name="channel_a_width_step_size" id="channel_a_width_step_size_0" value="<%= @interface[:width_step_size_list][0] %>" <%= "checked" if @interface[:channel_a_width_step_size].eql?(@interface[:width_step_size_list][0])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][0] %>
                         </label>
                       </div>
                     </td>
-                    <td rowspan = "<%= @interface[:delay_step_size_list].count-1 %>">
+                    <td rowspan = "<%= @interface[:width_step_size_list].count-1 %>">
                     </td>
                   </tr>
                   <tr>
-                    <td class = "delay-steps">
+                    <td class = "width-steps">
                       <div class="radio text-left">
                         <label>
-                          <input type="radio" name="channel_a_delay_step_size" id="channel_a_delay_step_size_1" value="<%= @interface[:delay_step_size_list][1] %>" <%= "checked" if @interface[:channel_a_delay_step_size].eql?(@interface[:delay_step_size_list][1])%> <%= @interface[:main_interface_access] %> >
-                          <%= @interface[:delay_step_size_list][1] %>
+                          <input type="radio" name="channel_a_width_step_size" id="channel_a_width_step_size_1" value="<%= @interface[:width_step_size_list][1] %>" <%= "checked" if @interface[:channel_a_width_step_size].eql?(@interface[:width_step_size_list][1])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][1] %>
                         </label>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td rowspan = "2">
-                      <button id = "channel_a_delay_down" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                      <button id = "channel_a_width_down" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
                         <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                       </button>
                     </td>
-                    <td class = "delay-steps">
+                    <td class = "width-steps">
                       <div class="radio text-left">
                         <label>
-                          <input type="radio" name="channel_a_delay_step_size" id="channel_a_delay_step_size_2" value="<%= @interface[:delay_step_size_list][2] %>" <%= "checked" if @interface[:channel_a_delay_step_size].eql?(@interface[:delay_step_size_list][2])%> <%= @interface[:main_interface_access] %> >
-                          <%= @interface[:delay_step_size_list][2] %>
+                          <input type="radio" name="channel_a_width_step_size" id="channel_a_width_step_size_2" value="<%= @interface[:width_step_size_list][2] %>" <%= "checked" if @interface[:channel_a_width_step_size].eql?(@interface[:width_step_size_list][2])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][2] %>
                         </label>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class = "delay-steps">
+                    <td class = "width-steps">
                       <div class="radio text-left">
                         <label>
-                          <input type="radio" name="channel_a_delay_step_size" id="channel_a_delay_step_size_3" value="<%= @interface[:delay_step_size_list][3] %>" <%= "checked" if @interface[:channel_a_delay_step_size].eql?(@interface[:delay_step_size_list][3])%> <%= @interface[:main_interface_access] %> >
-                          <%= @interface[:delay_step_size_list][3] %>
+                          <input type="radio" name="channel_a_width_step_size" id="channel_a_width_step_size_3" value="<%= @interface[:width_step_size_list][3] %>" <%= "checked" if @interface[:channel_a_width_step_size].eql?(@interface[:width_step_size_list][3])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][3] %>
                         </label>
                       </div>
                     </td>
