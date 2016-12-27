@@ -77,23 +77,30 @@ require_relative '../models/definitions'
       control_interface.update(:main_interface_access, ENABLED)
     end
     {
+      :current_view => control_interface.read(:current_view),
       :serial_response => control_interface.read(:response_history).first || "",
+      :command_history => control_interface.read(:command_history),
       :command_history_count => control_interface.read(:command_history).count,
+      :response_history => control_interface.read(:response_history),
       :serial_port_status => control_interface.read(:serial_port_status),
       :serial_port_status_label => control_interface.read(:serial_port_status_label),
       :reconnect_button_show => control_interface.read(:reconnect_button_show),
       :send_command_access => control_interface.read(:send_command_access),
       :main_interface_access => control_interface.read(:main_interface_access),
+      :step_size_list => control_interface.read(:step_size_list),
+      :last_delay_tab => control_interface.read(:last_delay_tab),
       :channel_a_delay => control_interface.read(:channel_a_delay),
       :channel_a_delay_unit => control_interface.read(:channel_a_delay_unit),
-      :step_size_list => control_interface.read(:step_size_list),
       :channel_a_step_size => control_interface.read(:channel_a_step_size),
       :channel_a_delay_min => control_interface.read(:channel_a_delay_min),
       :channel_a_delay_max => control_interface.read(:channel_a_delay_max),
-      :command_history => control_interface.read(:command_history),
-      :response_history => control_interface.read(:response_history),
       :channel_a_name_custom => control_interface.read(:channel_a_name_custom),
-      :current_view => control_interface.read(:current_view)
+      :channel_b_delay => control_interface.read(:channel_b_delay),
+      :channel_b_delay_unit => control_interface.read(:channel_b_delay_unit),
+      :channel_b_step_size => control_interface.read(:channel_b_step_size),
+      :channel_b_delay_min => control_interface.read(:channel_b_delay_min),
+      :channel_b_delay_max => control_interface.read(:channel_b_delay_max),
+      :channel_b_name_custom => control_interface.read(:channel_b_name_custom)
     }
     
     # puts "!!!!!!! Value of reconnect button: #{output[:reconnect_button_show]}"

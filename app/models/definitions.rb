@@ -2,9 +2,14 @@ module Definitions
 
   PARAM_CONTROL = {"main_switch_status" => :main_switch_status,
                   "main_switch" => :main_switch,
+                  "last_delay_tab" => :last_delay_tab,
                   "channel_a_delay" => :channel_a_delay,
                   "channel_a_name_custom" => :channel_a_name_custom,
-                  "channel_a_step_size" => :channel_a_step_size}
+                  "channel_a_step_size" => :channel_a_step_size,
+                  "channel_b_delay" => :channel_b_delay,
+                  "channel_b_name_custom" => :channel_b_name_custom,
+                  "channel_b_step_size" => :channel_b_step_size
+                  }
   MSG_NOT_CONNECTED = "Not Connected"
   MSG_CONNECTED = "Connected"
   HTML_HIDE = "hidden"

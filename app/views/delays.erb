@@ -1,12 +1,12 @@
     <div class="row virtual-tabs-main">
+      <input type = "hidden" id = "last-delay-tab" value = "<%= @interface[:last_delay_tab] %>" />>
       <div  class="col-sm-12">
         <hr/>
         <div class="col-xs-3"> <!-- required for floating -->
           <!-- Nav tabs -->
-          <ul class="nav nav-tabs tabs-left">
-            <li class="active"><a href="#ch_a" data-toggle="tab"><%= @interface[:channel_a_name_custom] %> | <%= @interface[:channel_a_delay] %> ns</a>
-            </li>
-            <li><a href="#ch_b" data-toggle="tab">TBD</a></li>
+          <ul id = "delay-tabs" class="nav nav-tabs tabs-left">
+            <li><a id = "open-ch-a" href="#ch_a" data-toggle="tab"><%= @interface[:channel_a_name_custom] %> | <%= @interface[:channel_a_delay] %> ns</a></li>
+            <li><a id = "open-ch-b" href="#ch_b" data-toggle="tab"><%= @interface[:channel_b_name_custom] %> | <%= @interface[:channel_b_delay] %> ns</a></li>
             <li><a href="#ch_c" data-toggle="tab">TBD</a></li>
             <li><a href="#ch_d" data-toggle="tab">TBD</a></li>
           </ul>
@@ -15,7 +15,8 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="tab-pane active" id="ch_a">
-              <form id = "control-interface" action = "/" method = "POST">
+              <form id = "ch-a-control-interface" action = "/" method = "POST">
+                <input type = "hidden" name = "last_delay_tab" value = "ch_a" />
                 <div class = "col-md-12">
                   <table class = "delay-config-table text-center">
                     <tbody>
@@ -37,7 +38,7 @@
                         <td class = "delay-steps">
                           <div class="radio text-left">
                             <label>
-                              <input type="radio" name="channel_a_step_size" id="step_size_0" value="<%= @interface[:step_size_list][0] %>" <%= "checked" if @interface[:channel_a_step_size].eql?(@interface[:step_size_list][0])%> <%= @interface[:main_interface_access] %> >
+                              <input type="radio" name="channel_a_step_size" id="channel_a_step_size_0" value="<%= @interface[:step_size_list][0] %>" <%= "checked" if @interface[:channel_a_step_size].eql?(@interface[:step_size_list][0])%> <%= @interface[:main_interface_access] %> >
                               <%= @interface[:step_size_list][0] %>
                             </label>
                           </div>
@@ -49,7 +50,7 @@
                         <td class = "delay-steps">
                           <div class="radio text-left">
                             <label>
-                              <input type="radio" name="channel_a_step_size" id="step_size_1" value="<%= @interface[:step_size_list][1] %>" <%= "checked" if @interface[:channel_a_step_size].eql?(@interface[:step_size_list][1])%> <%= @interface[:main_interface_access] %> >
+                              <input type="radio" name="channel_a_step_size" id="channel_a_step_size_1" value="<%= @interface[:step_size_list][1] %>" <%= "checked" if @interface[:channel_a_step_size].eql?(@interface[:step_size_list][1])%> <%= @interface[:main_interface_access] %> >
                               <%= @interface[:step_size_list][1] %>
                             </label>
                           </div>
@@ -64,7 +65,7 @@
                         <td class = "delay-steps">
                           <div class="radio text-left">
                             <label>
-                              <input type="radio" name="channel_a_step_size" id="step_size_2" value="<%= @interface[:step_size_list][2] %>" <%= "checked" if @interface[:channel_a_step_size].eql?(@interface[:step_size_list][2])%> <%= @interface[:main_interface_access] %> >
+                              <input type="radio" name="channel_a_step_size" id="channel_a_step_size_2" value="<%= @interface[:step_size_list][2] %>" <%= "checked" if @interface[:channel_a_step_size].eql?(@interface[:step_size_list][2])%> <%= @interface[:main_interface_access] %> >
                               <%= @interface[:step_size_list][2] %>
                             </label>
                           </div>
@@ -74,7 +75,7 @@
                         <td class = "delay-steps">
                           <div class="radio text-left">
                             <label>
-                              <input type="radio" name="channel_a_step_size" id="step_size_3" value="<%= @interface[:step_size_list][3] %>" <%= "checked" if @interface[:channel_a_step_size].eql?(@interface[:step_size_list][3])%> <%= @interface[:main_interface_access] %> >
+                              <input type="radio" name="channel_a_step_size" id="channel_a_step_size_3" value="<%= @interface[:step_size_list][3] %>" <%= "checked" if @interface[:channel_a_step_size].eql?(@interface[:step_size_list][3])%> <%= @interface[:main_interface_access] %> >
                               <%= @interface[:step_size_list][3] %>
                             </label>
                           </div>
@@ -89,6 +90,79 @@
               </form>
             </div>
             <div class="tab-pane" id="ch_b">
+              <form id = "ch-b-control-interface" action = "/" method = "POST">
+                <input type = "hidden" name = "last_delay_tab" value = "ch_b" />
+                <div class = "col-md-12">
+                  <table class = "delay-config-table text-center">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <input id = "channel_b_name_custom" type="text" class="btn btn-lg" value = "<%= @interface[:channel_b_name_custom] %>" name = "channel_b_name_custom" <%= @interface[:main_interface_access] %> />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td rowspan = "<%= @interface[:step_size_list].count %>">
+                          <input id = "channel_b_delay_value" type="number" class="btn btn-lg" value = <%= @interface[:channel_b_delay] %> name = "channel_b_delay" <%= @interface[:main_interface_access] %> min = "<%= @interface[:channel_b_delay_min] %>" max = "<%= @interface[:channel_b_delay_max] %>" />
+                          <label for = "channel_b_delay_value" class = "delay-unit"><%= @interface[:channel_b_delay_unit] %></label>
+                        </td>
+                        <td rowspan = "2">
+                          <button id = "channel_b_delay_up" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                          </button>
+                        </td>
+                        <td class = "delay-steps">
+                          <div class="radio text-left">
+                            <label>
+                              <input type="radio" name="channel_b_step_size" id="channel_b_step_size_0" value="<%= @interface[:step_size_list][0] %>" <%= "checked" if @interface[:channel_b_step_size].eql?(@interface[:step_size_list][0])%> <%= @interface[:main_interface_access] %> >
+                              <%= @interface[:step_size_list][0] %>
+                            </label>
+                          </div>
+                        </td>
+                        <td rowspan = "<%= @interface[:step_size_list].count-1 %>">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class = "delay-steps">
+                          <div class="radio text-left">
+                            <label>
+                              <input type="radio" name="channel_b_step_size" id="channel_b_step_size_1" value="<%= @interface[:step_size_list][1] %>" <%= "checked" if @interface[:channel_b_step_size].eql?(@interface[:step_size_list][1])%> <%= @interface[:main_interface_access] %> >
+                              <%= @interface[:step_size_list][1] %>
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td rowspan = "2">
+                          <button id = "channel_b_delay_down" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                          </button>
+                        </td>
+                        <td class = "delay-steps">
+                          <div class="radio text-left">
+                            <label>
+                              <input type="radio" name="channel_b_step_size" id="channel_b_step_size_2" value="<%= @interface[:step_size_list][2] %>" <%= "checked" if @interface[:channel_b_step_size].eql?(@interface[:step_size_list][2])%> <%= @interface[:main_interface_access] %> >
+                              <%= @interface[:step_size_list][2] %>
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class = "delay-steps">
+                          <div class="radio text-left">
+                            <label>
+                              <input type="radio" name="channel_b_step_size" id="channel_b_step_size_3" value="<%= @interface[:step_size_list][3] %>" <%= "checked" if @interface[:channel_b_step_size].eql?(@interface[:step_size_list][3])%> <%= @interface[:main_interface_access] %> >
+                              <%= @interface[:step_size_list][3] %>
+                            </label>
+                          </div>
+                        </td>
+                        <td class = "change-view-button">
+                          <a href = "/seewidth" id = "width-button" class="btn btn-primary btn-lg" />Width</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </form>
             </div>
             <div class="tab-pane" id="ch_c">Messages Tab.</div>
             <div class="tab-pane" id="ch_d">Settings Tab.</div>

@@ -10,11 +10,15 @@
   margin-bottom: 2%;
 }
 
-input#channel_a_delay_value {
+input#channel_a_delay_value,
+input#channel_b_delay_value {
   font-size: 5em;
 }
 
-input#channel_a_delay_value::-webkit-outer-spin-button, input#channel_a_delay_value::-webkit-inner-spin-button {
+input#channel_a_delay_value::-webkit-outer-spin-button,
+input#channel_a_delay_value::-webkit-inner-spin-button,
+input#channel_b_delay_value::-webkit-outer-spin-button,
+input#channel_b_delay_value::-webkit-inner-spin-button  {
   -webkit-appearance: none;
   margin: 0;
 }

@@ -19,6 +19,7 @@ class ControlInterface
     @configuration_table[:current_view] = DEFAULT_VIEW
     @configuration_table[:main_switch] = "false"
     @configuration_table[:main_switch_status] = "unchecked"
+    @configuration_table[:last_delay_tab] = "ch_a"
 
     @configuration_table[:channel_a_name_custom] = "Channel A"
     @configuration_table[:channel_a_name_official] = "Channel A"
