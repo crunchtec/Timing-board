@@ -26,6 +26,7 @@ module Definitions
   ENABLED = ""
   DISABLED = "disabled"
   CONVERT_TO_NANOSECOND = 0.000000001
+  COMMAND_HISTORY_MAX = 100
 
   INTERFACE_SERIAL_CONTROL = {:channel_a_delay => "set_channel_a_delay",
                               :channel_b_delay => "set_channel_b_delay",

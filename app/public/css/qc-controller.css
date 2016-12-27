@@ -13,7 +13,11 @@
 input#channel_a_delay_value,
 input#channel_b_delay_value,
 input#channel_c_delay_value,
-input#channel_d_delay_value {
+input#channel_d_delay_value,
+input#channel_a_width_value,
+input#channel_b_width_value,
+input#channel_c_width_value,
+input#channel_d_width_value {
   font-size: 5em;
 }
 
@@ -24,16 +28,26 @@ input#channel_b_delay_value::-webkit-inner-spin-button,
 input#channel_c_delay_value::-webkit-outer-spin-button,
 input#channel_c_delay_value::-webkit-inner-spin-button,
 input#channel_d_delay_value::-webkit-outer-spin-button,
-input#channel_d_delay_value::-webkit-inner-spin-button  {
+input#channel_d_delay_value::-webkit-inner-spin-button,
+input#channel_a_width_value::-webkit-outer-spin-button,
+input#channel_a_width_value::-webkit-inner-spin-button,
+input#channel_b_width_value::-webkit-outer-spin-button,
+input#channel_b_width_value::-webkit-inner-spin-button,
+input#channel_c_width_value::-webkit-outer-spin-button,
+input#channel_c_width_value::-webkit-inner-spin-button,
+input#channel_d_width_value::-webkit-outer-spin-button,
+input#channel_d_width_value::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.delay-steps {
+.delay-steps,
+.width-steps {
   padding-left: 20px;
 }
 
-.delay-unit {
+.delay-unit,
+.width-unit {
   padding-left: 10px;
   padding-right: 10px;
   font-size: 3em;

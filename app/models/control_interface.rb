@@ -73,11 +73,11 @@ class ControlInterface
     @configuration_table[:channel_d_polarity] = DEFAULT_PN_POLARITY
     @configuration_table[:channel_d_step_size] = DEFAULT_DELAY_STEP_SIZE
 
-    @configuration_table[:step_size_list] = ["1", "10", "100", "1000"]
+    @configuration_table[:delay_step_size_list] = ["1", "10", "100", "1000"]
+    @configuration_table[:width_step_size_list] = ["0.01", "0.1", "1", "10"]
     @configuration_table[:command_history] = []
     @configuration_table[:response_history] = []
     @configuration_table[:response_time] = ""
-    # @configuration_table[:last_response_from_qc_board] = ""
     @configuration_table[:serial_port_status_label] = LABEL_DANGER
     @configuration_table[:serial_port_status] = MSG_NOT_CONNECTED
     @configuration_table[:reconnect_button_show] = HTML_SHOW
@@ -121,11 +121,13 @@ class ControlInterface
 
   def add_to_command_history(command, serial_response)
     command = "< EMPTY >" if command.empty?
+    @configuration_table[:command_history].pop if @configuration_table[:command_history].count.eql?(COMMAND_HISTORY_MAX)
     @configuration_table[:command_history].unshift(command)
     add_to_response_history(serial_response)
   end
 
   def add_to_response_history(serial_response)
+    @configuration_table[:response_history].pop if @configuration_table[:response_history].count.eql?(COMMAND_HISTORY_MAX)
     @configuration_table[:response_history].unshift(serial_response)
   end
 
