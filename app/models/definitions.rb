@@ -13,12 +13,16 @@ module Definitions
                   "channel_b_delay_step_size" => :channel_b_delay_step_size,
                   "channel_b_width" => :channel_b_width,
                   "channel_b_width_step_size" => :channel_b_width_step_size,
-                  "channel_c_delay" => :channel_c_delay,
                   "channel_c_name_custom" => :channel_c_name_custom,
+                  "channel_c_delay" => :channel_c_delay,
                   "channel_c_delay_step_size" => :channel_c_delay_step_size,
-                  "channel_d_delay" => :channel_d_delay,
+                  "channel_c_width" => :channel_c_width,
+                  "channel_c_width_step_size" => :channel_c_width_step_size,
                   "channel_d_name_custom" => :channel_d_name_custom,
-                  "channel_d_delay_step_size" => :channel_d_delay_step_size
+                  "channel_d_delay" => :channel_d_delay,
+                  "channel_d_delay_step_size" => :channel_d_delay_step_size,
+                  "channel_d_width" => :channel_d_width,
+                  "channel_d_width_step_size" => :channel_d_width_step_size
                   }
   MSG_NOT_CONNECTED = "Not Connected"
   MSG_CONNECTED = "Connected"
@@ -36,7 +40,10 @@ module Definitions
                               :channel_b_delay => "set_channel_b_delay",
                               :channel_c_delay => "set_channel_c_delay",
                               :channel_d_delay => "set_channel_d_delay",
-                              :channel_a_width => "set_channel_a_width"
+                              :channel_a_width => "set_channel_a_width",
+                              :channel_b_width => "set_channel_b_width",
+                              :channel_c_width => "set_channel_c_width",
+                              :channel_d_width => "set_channel_d_width"
                               }
 
   #Default value definitions
@@ -67,6 +74,9 @@ module Definitions
   P3_DELAY = ":PULSE3:DELAY" #time OR ?
   P4_DELAY = ":PULSE4:DELAY" #time OR ?
   P1_WIDTH = ":PULSE1:WIDTH" #time OR ?
+  P2_WIDTH = ":PULSE2:WIDTH" #time OR ?
+  P3_WIDTH = ":PULSE3:WIDTH" #time OR ?
+  P4_WIDTH = ":PULSE4:WIDTH" #time OR ?
   P1_MODE = ":PULSE1:POL" #config OR ?
   P2_MODE = ":PULSE2:POL" #config OR ?
   P3_MODE = ":PULSE3:POL" #config OR ?

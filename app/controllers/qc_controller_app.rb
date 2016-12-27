@@ -95,6 +95,45 @@ require_relative '../models/definitions'
     send_serial_command(serial_port, control_interface, command)
   end
 
+  def set_channel_b_width(serial_port, control_interface)
+    turn_main_output_off(serial_port, control_interface)
+    command = "#{P2_WIDTH} #{control_interface.read(:channel_b_width)}e-6"
+    send_serial_command(serial_port, control_interface, command)
+    get_channel_b_width(serial_port, control_interface)
+    puts command.inspect
+  end
+
+  def get_channel_b_width(serial_port, control_interface)
+    command = "#{P2_WIDTH}?"
+    send_serial_command(serial_port, control_interface, command)
+  end
+
+  def set_channel_c_width(serial_port, control_interface)
+    turn_main_output_off(serial_port, control_interface)
+    command = "#{P3_WIDTH} #{control_interface.read(:channel_c_width)}e-6"
+    send_serial_command(serial_port, control_interface, command)
+    get_channel_c_width(serial_port, control_interface)
+    puts command.inspect
+  end
+
+  def get_channel_c_width(serial_port, control_interface)
+    command = "#{P3_WIDTH}?"
+    send_serial_command(serial_port, control_interface, command)
+  end
+
+  def set_channel_d_width(serial_port, control_interface)
+    turn_main_output_off(serial_port, control_interface)
+    command = "#{P4_WIDTH} #{control_interface.read(:channel_d_width)}e-6"
+    send_serial_command(serial_port, control_interface, command)
+    get_channel_d_width(serial_port, control_interface)
+    puts command.inspect
+  end
+
+  def get_channel_d_width(serial_port, control_interface)
+    command = "#{P4_WIDTH}?"
+    send_serial_command(serial_port, control_interface, command)
+  end
+
   def changed(control_interface, params)
     change_list = {}
     params.keys.map do |param|
@@ -170,12 +209,22 @@ require_relative '../models/definitions'
       :channel_c_delay_step_size => control_interface.read(:channel_c_delay_step_size),
       :channel_c_delay_min => control_interface.read(:channel_c_delay_min),
       :channel_c_delay_max => control_interface.read(:channel_c_delay_max),
+      :channel_c_width => control_interface.read(:channel_c_width),
+      :channel_c_width_unit => control_interface.read(:channel_c_width_unit),
+      :channel_c_width_step_size => control_interface.read(:channel_c_width_step_size),
+      :channel_c_width_min => control_interface.read(:channel_c_width_min),
+      :channel_c_width_max => control_interface.read(:channel_c_width_max),
       :channel_c_name_custom => control_interface.read(:channel_c_name_custom),
       :channel_d_delay => control_interface.read(:channel_d_delay),
       :channel_d_delay_unit => control_interface.read(:channel_d_delay_unit),
       :channel_d_delay_step_size => control_interface.read(:channel_d_delay_step_size),
       :channel_d_delay_min => control_interface.read(:channel_d_delay_min),
       :channel_d_delay_max => control_interface.read(:channel_d_delay_max),
+      :channel_d_width => control_interface.read(:channel_d_width),
+      :channel_d_width_unit => control_interface.read(:channel_d_width_unit),
+      :channel_d_width_step_size => control_interface.read(:channel_d_width_step_size),
+      :channel_d_width_min => control_interface.read(:channel_d_width_min),
+      :channel_d_width_max => control_interface.read(:channel_d_width_max),
       :channel_d_name_custom => control_interface.read(:channel_d_name_custom)
     }
     

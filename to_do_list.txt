@@ -9,9 +9,9 @@
 9. COMPLETED: Implement delay config interface vs. command list => COMPLETED
 10. COMPLETED: Implement response history, matching to command history => COMPLETED
 11. COMPLETED: Limit command/response history to X => COMPLETED
-12. ONGOING: Implement width config interface vs. command list
+12. COMPLETED: Implement width config interface vs. command list => COMPLETED
 13. Implement MORE configuration options vs. command list
 14. Implement sending initial config list to QC controller
 15. Remove last serial response from bottom status bar
 16. Fix corner case when deleting number completely from text box
-17. Main switch status on interface lost when switching between width and view
+17. COMPLETED: Fix Main switch status on interface lost when switching between width and view => COMPLETED

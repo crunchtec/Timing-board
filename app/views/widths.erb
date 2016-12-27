@@ -90,10 +90,229 @@
           </form>
         </div>
         <div class="tab-pane" id="ch_b">
+          <form id = "ch-b-control-interface" action = "/" method = "POST">
+            <input type = "hidden" name = "last_delay_tab" value = "ch_b" />
+            <div class = "col-md-12">
+              <table class = "delay-config-table text-center">
+                <tbody>
+                  <tr>
+                    <td>
+                      <input id = "channel_b_name_custom" type="text" class="btn btn-lg" value = "<%= @interface[:channel_b_name_custom] %>" name = "channel_b_name_custom" <%= @interface[:main_interface_access] %> />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan = "<%= @interface[:width_step_size_list].count %>">
+                      <input id = "channel_b_width_value" type="number" class="btn btn-lg" value = "<%= @interface[:channel_b_width] %>" name = "channel_b_width" <%= @interface[:main_interface_access] %> min = "<%= @interface[:channel_b_width_min] %>" max = "<%= @interface[:channel_b_width_max] %>" />
+                      <label for = "channel_b_width_value" class = "width-unit"><%= @interface[:channel_b_width_unit] %></label>
+                    </td>
+                    <td rowspan = "2">
+                      <button id = "channel_b_width_up" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_b_width_step_size" id="channel_b_width_step_size_0" value="<%= @interface[:width_step_size_list][0] %>" <%= "checked" if @interface[:channel_b_width_step_size].eql?(@interface[:width_step_size_list][0])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][0] %>
+                        </label>
+                      </div>
+                    </td>
+                    <td rowspan = "<%= @interface[:width_step_size_list].count-1 %>">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_b_width_step_size" id="channel_b_width_step_size_1" value="<%= @interface[:width_step_size_list][1] %>" <%= "checked" if @interface[:channel_b_width_step_size].eql?(@interface[:width_step_size_list][1])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][1] %>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan = "2">
+                      <button id = "channel_b_width_down" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_b_width_step_size" id="channel_b_width_step_size_2" value="<%= @interface[:width_step_size_list][2] %>" <%= "checked" if @interface[:channel_b_width_step_size].eql?(@interface[:width_step_size_list][2])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][2] %>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_b_width_step_size" id="channel_b_width_step_size_3" value="<%= @interface[:width_step_size_list][3] %>" <%= "checked" if @interface[:channel_b_width_step_size].eql?(@interface[:width_step_size_list][3])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][3] %>
+                        </label>
+                      </div>
+                    </td>
+                    <td class = "change-view-button">
+                      <a href = "/seedelay" id = "width-button" class="btn btn-primary btn-lg" />Delay</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
         </div>
         <div class="tab-pane" id="ch_c">
+          <form id = "ch-c-control-interface" action = "/" method = "POST">
+            <input type = "hidden" name = "last_delay_tab" value = "ch_c" />
+            <div class = "col-md-12">
+              <table class = "delay-config-table text-center">
+                <tbody>
+                  <tr>
+                    <td>
+                      <input id = "channel_c_name_custom" type="text" class="btn btn-lg" value = "<%= @interface[:channel_c_name_custom] %>" name = "channel_c_name_custom" <%= @interface[:main_interface_access] %> />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan = "<%= @interface[:width_step_size_list].count %>">
+                      <input id = "channel_c_width_value" type="number" class="btn btn-lg" value = "<%= @interface[:channel_c_width] %>" name = "channel_c_width" <%= @interface[:main_interface_access] %> min = "<%= @interface[:channel_c_width_min] %>" max = "<%= @interface[:channel_c_width_max] %>" />
+                      <label for = "channel_c_width_value" class = "width-unit"><%= @interface[:channel_c_width_unit] %></label>
+                    </td>
+                    <td rowspan = "2">
+                      <button id = "channel_c_width_up" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_c_width_step_size" id="channel_c_width_step_size_0" value="<%= @interface[:width_step_size_list][0] %>" <%= "checked" if @interface[:channel_c_width_step_size].eql?(@interface[:width_step_size_list][0])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][0] %>
+                        </label>
+                      </div>
+                    </td>
+                    <td rowspan = "<%= @interface[:width_step_size_list].count-1 %>">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_c_width_step_size" id="channel_c_width_step_size_1" value="<%= @interface[:width_step_size_list][1] %>" <%= "checked" if @interface[:channel_c_width_step_size].eql?(@interface[:width_step_size_list][1])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][1] %>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan = "2">
+                      <button id = "channel_c_width_down" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_c_width_step_size" id="channel_c_width_step_size_2" value="<%= @interface[:width_step_size_list][2] %>" <%= "checked" if @interface[:channel_c_width_step_size].eql?(@interface[:width_step_size_list][2])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][2] %>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_c_width_step_size" id="channel_c_width_step_size_3" value="<%= @interface[:width_step_size_list][3] %>" <%= "checked" if @interface[:channel_c_width_step_size].eql?(@interface[:width_step_size_list][3])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][3] %>
+                        </label>
+                      </div>
+                    </td>
+                    <td class = "change-view-button">
+                      <a href = "/seedelay" id = "width-button" class="btn btn-primary btn-lg" />Delay</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
         </div>
         <div class="tab-pane" id="ch_d">
+          <form id = "ch-d-control-interface" action = "/" method = "POST">
+            <input type = "hidden" name = "last_delay_tab" value = "ch_d" />
+            <div class = "col-md-12">
+              <table class = "delay-config-table text-center">
+                <tbody>
+                  <tr>
+                    <td>
+                      <input id = "channel_d_name_custom" type="text" class="btn btn-lg" value = "<%= @interface[:channel_d_name_custom] %>" name = "channel_d_name_custom" <%= @interface[:main_interface_access] %> />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan = "<%= @interface[:width_step_size_list].count %>">
+                      <input id = "channel_d_width_value" type="number" class="btn btn-lg" value = "<%= @interface[:channel_d_width] %>" name = "channel_d_width" <%= @interface[:main_interface_access] %> min = "<%= @interface[:channel_d_width_min] %>" max = "<%= @interface[:channel_d_width_max] %>" />
+                      <label for = "channel_d_width_value" class = "width-unit"><%= @interface[:channel_d_width_unit] %></label>
+                    </td>
+                    <td rowspan = "2">
+                      <button id = "channel_d_width_up" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_d_width_step_size" id="channel_d_width_step_size_0" value="<%= @interface[:width_step_size_list][0] %>" <%= "checked" if @interface[:channel_d_width_step_size].eql?(@interface[:width_step_size_list][0])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][0] %>
+                        </label>
+                      </div>
+                    </td>
+                    <td rowspan = "<%= @interface[:width_step_size_list].count-1 %>">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_d_width_step_size" id="channel_d_width_step_size_1" value="<%= @interface[:width_step_size_list][1] %>" <%= "checked" if @interface[:channel_d_width_step_size].eql?(@interface[:width_step_size_list][1])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][1] %>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan = "2">
+                      <button id = "channel_d_width_down" type="button" class="btn btn-default btn-lg" <%= @interface[:main_interface_access] %>>
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_d_width_step_size" id="channel_d_width_step_size_2" value="<%= @interface[:width_step_size_list][2] %>" <%= "checked" if @interface[:channel_d_width_step_size].eql?(@interface[:width_step_size_list][2])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][2] %>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class = "width-steps">
+                      <div class="radio text-left">
+                        <label>
+                          <input type="radio" name="channel_d_width_step_size" id="channel_d_width_step_size_3" value="<%= @interface[:width_step_size_list][3] %>" <%= "checked" if @interface[:channel_d_width_step_size].eql?(@interface[:width_step_size_list][3])%> <%= @interface[:main_interface_access] %> >
+                          <%= @interface[:width_step_size_list][3] %>
+                        </label>
+                      </div>
+                    </td>
+                    <td class = "change-view-button">
+                      <a href = "/seedelay" id = "width-button" class="btn btn-primary btn-lg" />Delay</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
         </div>
       </div>
     </div>
