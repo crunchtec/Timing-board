@@ -4,7 +4,7 @@
         <h1>QC Control Interface by Crunch Technologies</h1>
 
 
-    <div class="row" style="min-height:600px;">
+    <div class="row virtual-tabs-main">
       <div  class="col-sm-12">
         <form id = "control-interface-main-switch" action = "/mainswitch" method = "POST">
           <div class = "row col-md-12 main-switch-bar text-center">
@@ -19,7 +19,7 @@
         <div class="col-xs-3"> <!-- required for floating -->
           <!-- Nav tabs -->
           <ul class="nav nav-tabs tabs-left">
-            <li class="active"><a href="#home" data-toggle="tab">A | <%= @interface[:channel_a_delay] %> ns</a>
+            <li class="active"><a href="#home" data-toggle="tab"><%= @interface[:channel_a_name_custom] %> | <%= @interface[:channel_a_delay] %> ns</a>
             </li>
             <li><a href="#profile" data-toggle="tab">TBD</a></li>
             <li><a href="#messages" data-toggle="tab">TBD</a></li>
@@ -35,11 +35,11 @@
             
         <form id = "control-interface" action = "/" method = "POST">
           <div class = "col-md-12">
-            <table class = "text-center">
+            <table class = "delay-config-table text-center">
               <tbody>
                 <tr>
                   <td>
-                    <input id = "channel_a_name_custom" type="text" class="btn btn-lg" value = "<%= channel_a_name_custom %>" name = "channel_a_name_custom" <%= @interface[:main_interface_access] %> />
+                    <input id = "channel_a_name_custom" type="text" class="btn btn-lg" value = "<%= @interface[:channel_a_name_custom] %>" name = "channel_a_name_custom" <%= @interface[:main_interface_access] %> />
                   </td>
                 </tr>
                 <tr>
@@ -115,6 +115,7 @@
       </div>
 
 
+      </div>
 
 
       <div class = "row col-md-12">
@@ -137,14 +138,21 @@
         <div class = "form-group">
           <label>Command history:</label>
           <select class = "form-control" size = "5" id = "command-history" <%= @interface[:send_command_access] %>>
-            <% command_history.each do |command|%>
+            <% @interface[:command_history].each do |command|%>
             <option><%= command %></option>
             <% end %>
           </select>
         </div>
+        <div class = "form-group">
+          <label>Response history:</label>
+          <select class = "form-control" size = "5" id = "response-history" <%= @interface[:send_command_access] %>>
+            <% @interface[:response_history].each do |response|%>
+            <option><%= response %></option>
+            <% end %>
+          </select>
+        </div>
       </div>
-      </div>
-      <div class = "row">
+      <div class = "row col-md-12">
         <div class = "col-md-6 text-left">
           <span class = "label label-<%= @interface[:serial_port_status_label] %>"> Serial port status: <%= @interface[:serial_port_status] %></span>
           <form class = "form" action = "/retryserialport" method = "POST"  <%= @interface[:reconnect_button_show] %>>

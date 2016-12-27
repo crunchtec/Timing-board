@@ -11,8 +11,21 @@
       $(this).submit();
     });
     $('#command-history').change(function() {
+      var command_index = 0
+      $('#command-history option:selected').each(function(){
+        command_index = $(this).index();
+        $('#response-history').prop('selectedIndex', command_index);
+      });
       $('#any-command').val($(this).val());
       $('#any-command').focus();
+    });
+
+    $('#response-history').change(function() {
+      var response_index = 0
+      $('#response-history option:selected').each(function(){
+        response_index = $(this).index();
+        $('#command-history').prop('selectedIndex', response_index).change();
+      });
     });
 
     $('#channel_a_delay_up').click(function(){

@@ -3,7 +3,11 @@
 }
 
 .serial-button {
-  display: inline-block;https://github.com/dbtek/bootstrap-vertical-tabs.git
+  display: inline-block;
+}
+
+.virtual-tabs-main {
+  margin-bottom: 2%;
 }
 
 input#channel_a_delay_value {
@@ -13,4 +17,8 @@ input#channel_a_delay_value {
 input#channel_a_delay_value::-webkit-outer-spin-button, input#channel_a_delay_value::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+#control-interface table {
+  border-spacing: 10px;
 }

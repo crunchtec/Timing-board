@@ -7,7 +7,6 @@ require_relative '../models/control_interface'
 require_relative '../models/definitions'
 
 
-# class QcControllerApp < Sinatra::Base
   set :root, File.expand_path("..", __dir__)
   set :method_override, true
   # set :bind, '0.0.0.0'
@@ -19,15 +18,31 @@ require_relative '../models/definitions'
   serial_port.connect
 
 
+  def serial_control(serial_port, change_list, control_interface)
+    change_list.keys.each do |change_item|
+      self.send(INTERFACE_SERIAL_CONTROL[change_item],serial_port, control_interface) unless INTERFACE_SERIAL_CONTROL[change_item].nil?
+    end
+  end
+
+  def set_channel_a_delay(serial_port, control_interface)
+    command = ":PULSE1:DELAY #{control_interface.read(:channel_a_delay)}e-9"
+    send_serial_command(serial_port, control_interface, command)
+    puts command.inspect
+  end
+
+  def get_channel_a_delay(serial_port, control_interface)
+    command = ":PULSE1:DELAY?"
+  end
+
   def changed(control_interface, params)
     change_list = {}
     params.keys.map do |param|
       parameter = PARAM_CONTROL[param]
       form_value = params[param]
-      puts control_interface
-      puts "Control Interface Channel A name custom: #{control_interface.channel_a_name_custom}"
-      puts "Control Interface Channel A name custom: #{control_interface.channel_a_delay}"
-      puts "Control Interface Channel A name custom: #{control_interface.main_switch_status}"
+      # puts control_interface
+      # puts "Control Interface Channel A name custom: #{control_interface.channel_a_name_custom}"
+      # puts "Control Interface Channel A name custom: #{control_interface.channel_a_delay}"
+      # puts "Control Interface Channel A name custom: #{control_interface.main_switch_status}"
       if !control_interface.same?(parameter, form_value)
         control_interface.update(parameter, form_value)
         change_list[parameter] = control_interface.read(parameter)
@@ -51,7 +66,7 @@ require_relative '../models/definitions'
       control_interface.update(:main_interface_access, ENABLED)
     end
     {
-      :serial_response => control_interface.read(:last_response_from_qc_board),
+      :serial_response => control_interface.read(:response_history).first || "",
       :command_history_count => control_interface.read(:command_history).count,
       :serial_port_status => control_interface.read(:serial_port_status),
       :serial_port_status_label => control_interface.read(:serial_port_status_label),
@@ -63,7 +78,10 @@ require_relative '../models/definitions'
       :step_size_list => control_interface.read(:step_size_list),
       :step_size => control_interface.read(:step_size),
       :channel_a_delay_min => control_interface.read(:channel_a_delay_min),
-      :channel_a_delay_max => control_interface.read(:channel_a_delay_max)
+      :channel_a_delay_max => control_interface.read(:channel_a_delay_max),
+      :command_history => control_interface.read(:command_history),
+      :response_history => control_interface.read(:response_history),
+      :channel_a_name_custom => control_interface.read(:channel_a_name_custom)
     }
     
     # puts "!!!!!!! Value of reconnect button: #{output[:reconnect_button_show]}"
@@ -79,34 +97,29 @@ require_relative '../models/definitions'
     erb:index, :locals => {
                           :response_time => control_interface.read(:response_time),
                           :main_switch => control_interface.main_switch_status,
-                          :main_switch_status => control_interface.main_switch_status,
-                          :channel_a_name_custom => control_interface.channel_a_name_custom,
-                          # :channel_a_delay => control_interface.channel_a_delay,
-                          :command_history => control_interface.read(:command_history)
+                          :main_switch_status => control_interface.main_switch_status
                           }
   end
 
   post "/" do
-    # require 'pry'; binding.pry
     change_list = changed(control_interface, params)
-    puts "List of changed parameters: #{change_list}"    
+    puts "List of changed parameters: #{change_list}"
+    serial_control(serial_port, change_list, control_interface)
     redirect "/"
   end
 
   post "/send" do
     change_list = changed(control_interface, params)
-    serial_response = send_serial_command(serial_port, params["command"])
-    control_interface.update(:last_response_from_qc_board, serial_response)
-    control_interface.add_to_command_history(params["command"])
+    serial_response = send_serial_command(serial_port, control_interface, params["command"])
+    # control_interface.update(:last_response_from_qc_board, serial_response)
+    # control_interface.add_to_command_history(params["command"])
     redirect '/'
   end
 
   post "/mainswitch" do
     change_list = changed(control_interface, params)
     command = main_switch_command(control_interface.main_switch_status)
-    serial_response = send_serial_command(serial_port, command)
-    control_interface.update(:last_response_from_qc_board, serial_response)
-    control_interface.add_to_command_history(command)
+    serial_response = send_serial_command(serial_port, control_interface, command)
     redirect '/'
   end
 
@@ -120,10 +133,13 @@ require_relative '../models/definitions'
     redirect '/'
   end
 
-  private
+  # private
 
-  def send_serial_command(serial_port, command)
-    serial_port.write(command)
+  def send_serial_command(serial_port, control_interface, command)
+    serial_response = serial_port.write(command)
+    # control_interface.update(:last_response_from_qc_board, serial_response)
+    control_interface.add_to_command_history(command, serial_response)
+    return serial_response
   end
 
   def main_switch_command(switch_status)

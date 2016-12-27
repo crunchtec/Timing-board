@@ -31,6 +31,7 @@ class ControlInterface
     @configuration_table[:step_size] = "10"
     @configuration_table[:step_size_list] = ["1", "10", "100", "1000"]
     @configuration_table[:command_history] = []
+    @configuration_table[:response_history] = []
     @configuration_table[:response_time] = ""
     @configuration_table[:last_response_from_qc_board] = ""
     @configuration_table[:serial_port_status_label] = LABEL_DANGER
@@ -73,8 +74,14 @@ class ControlInterface
     configuration_table[parameter]
   end
 
-  def add_to_command_history(command)
+  def add_to_command_history(command, serial_response)
+    command = "< EMPTY >" if command.empty?
     @configuration_table[:command_history].unshift(command)
+    add_to_response_history(serial_response)
+  end
+
+  def add_to_response_history(serial_response)
+    @configuration_table[:response_history].unshift(serial_response)
   end
 
   def empty_command_history

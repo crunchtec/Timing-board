@@ -14,6 +14,10 @@ module Definitions
   LABEL_DANGER = "danger"
   ENABLED = ""
   DISABLED = "disabled"
+  CONVERT_TO_NANOSECOND = 0.000000001
+
+  INTERFACE_SERIAL_CONTROL = {:channel_a_delay => "set_channel_a_delay"
+                              }
 
   #Serial Command Definitions:
   MAIN_OUTPUT_ON = ":INST:STATE ON"
