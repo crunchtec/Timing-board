@@ -74,14 +74,14 @@
       current_value = parseInt($('#channel_a_delay_value').val());
       if (current_value != max_delay) {
         
-        if ($("input[id='channel_a_step_size_0']").is(':checked')) {
-          increment = parseInt($('#channel_a_step_size_0').val());
-        } else if ($("input[id='channel_a_step_size_1']").is(':checked')) {
-          increment = parseInt($('#channel_a_step_size_1').val());
-        } else if ($("input[id='channel_a_step_size_2']").is(':checked')) {
-          increment = parseInt($('#channel_a_step_size_2').val());
-        } else if ($("input[id='channel_a_step_size_3']").is(':checked')) {
-          increment = parseInt($('#channel_a_step_size_3').val());
+        if ($("input[id='channel_a_delay_step_size_0']").is(':checked')) {
+          increment = parseInt($('#channel_a_delay_step_size_0').val());
+        } else if ($("input[id='channel_a_delay_step_size_1']").is(':checked')) {
+          increment = parseInt($('#channel_a_delay_step_size_1').val());
+        } else if ($("input[id='channel_a_delay_step_size_2']").is(':checked')) {
+          increment = parseInt($('#channel_a_delay_step_size_2').val());
+        } else if ($("input[id='channel_a_delay_step_size_3']").is(':checked')) {
+          increment = parseInt($('#channel_a_delay_step_size_3').val());
         }
         if ((current_value + increment) < max_delay) {
           $('#channel_a_delay_value').val(
@@ -105,14 +105,14 @@
       current_value = parseInt($('#channel_a_delay_value').val());
       if (current_value != min_delay) {
         
-        if ($("input[id='channel_a_step_size_0']").is(':checked')) {
-          decrement = parseInt($('#channel_a_step_size_0').val());
-        } else if ($("input[id='channel_a_step_size_1']").is(':checked')) {
-          decrement = parseInt($('#channel_a_step_size_1').val());
-        } else if ($("input[id='channel_a_step_size_2']").is(':checked')) {
-          decrement = parseInt($('#channel_a_step_size_2').val());
-        } else if ($("input[id='channel_a_step_size_3']").is(':checked')) {
-          decrement = parseInt($('#channel_a_step_size_3').val());
+        if ($("input[id='channel_a_delay_step_size_0']").is(':checked')) {
+          decrement = parseInt($('#channel_a_delay_step_size_0').val());
+        } else if ($("input[id='channel_a_delay_step_size_1']").is(':checked')) {
+          decrement = parseInt($('#channel_a_delay_step_size_1').val());
+        } else if ($("input[id='channel_a_delay_step_size_2']").is(':checked')) {
+          decrement = parseInt($('#channel_a_delay_step_size_2').val());
+        } else if ($("input[id='channel_a_delay_step_size_3']").is(':checked')) {
+          decrement = parseInt($('#channel_a_delay_step_size_3').val());
         }
         if ((current_value - decrement) > min_delay) {
           $('#channel_a_delay_value').val(
@@ -138,14 +138,14 @@
       current_value = parseInt($('#channel_b_delay_value').val());
       if (current_value != max_delay) {
         
-        if ($("input[id='channel_b_step_size_0']").is(':checked')) {
-          increment = parseInt($('#channel_b_step_size_0').val());
-        } else if ($("input[id='channel_b_step_size_1']").is(':checked')) {
-          increment = parseInt($('#channel_b_step_size_1').val());
-        } else if ($("input[id='channel_b_step_size_2']").is(':checked')) {
-          increment = parseInt($('#channel_b_step_size_2').val());
-        } else if ($("input[id='channel_b_step_size_3']").is(':checked')) {
-          increment = parseInt($('#channel_b_step_size_3').val());
+        if ($("input[id='channel_b_delay_step_size_0']").is(':checked')) {
+          increment = parseInt($('#channel_b_delay_step_size_0').val());
+        } else if ($("input[id='channel_b_delay_step_size_1']").is(':checked')) {
+          increment = parseInt($('#channel_b_delay_step_size_1').val());
+        } else if ($("input[id='channel_b_delay_step_size_2']").is(':checked')) {
+          increment = parseInt($('#channel_b_delay_step_size_2').val());
+        } else if ($("input[id='channel_b_delay_step_size_3']").is(':checked')) {
+          increment = parseInt($('#channel_b_delay_step_size_3').val());
         }
         if ((current_value + increment) < max_delay) {
           $('#channel_b_delay_value').val(
@@ -169,14 +169,14 @@
       current_value = parseInt($('#channel_b_delay_value').val());
       if (current_value != min_delay) {
         
-        if ($("input[id='channel_b_step_size_0']").is(':checked')) {
-          decrement = parseInt($('#channel_b_step_size_0').val());
-        } else if ($("input[id='channel_b_step_size_1']").is(':checked')) {
-          decrement = parseInt($('#channel_b_step_size_1').val());
-        } else if ($("input[id='channel_b_step_size_2']").is(':checked')) {
-          decrement = parseInt($('#channel_b_step_size_2').val());
-        } else if ($("input[id='channel_b_step_size_3']").is(':checked')) {
-          decrement = parseInt($('#channel_b_step_size_3').val());
+        if ($("input[id='channel_b_delay_step_size_0']").is(':checked')) {
+          decrement = parseInt($('#channel_b_delay_step_size_0').val());
+        } else if ($("input[id='channel_b_delay_step_size_1']").is(':checked')) {
+          decrement = parseInt($('#channel_b_delay_step_size_1').val());
+        } else if ($("input[id='channel_b_delay_step_size_2']").is(':checked')) {
+          decrement = parseInt($('#channel_b_delay_step_size_2').val());
+        } else if ($("input[id='channel_b_delay_step_size_3']").is(':checked')) {
+          decrement = parseInt($('#channel_b_delay_step_size_3').val());
         }
         if ((current_value - decrement) > min_delay) {
           $('#channel_b_delay_value').val(
@@ -200,14 +200,14 @@
       current_value = parseInt($('#channel_c_delay_value').val());
       if (current_value != max_delay) {
         
-        if ($("input[id='channel_c_step_size_0']").is(':checked')) {
-          increment = parseInt($('#channel_c_step_size_0').val());
-        } else if ($("input[id='channel_c_step_size_1']").is(':checked')) {
-          increment = parseInt($('#channel_c_step_size_1').val());
-        } else if ($("input[id='channel_c_step_size_2']").is(':checked')) {
-          increment = parseInt($('#channel_c_step_size_2').val());
-        } else if ($("input[id='channel_c_step_size_3']").is(':checked')) {
-          increment = parseInt($('#channel_c_step_size_3').val());
+        if ($("input[id='channel_c_delay_step_size_0']").is(':checked')) {
+          increment = parseInt($('#channel_c_delay_step_size_0').val());
+        } else if ($("input[id='channel_c_delay_step_size_1']").is(':checked')) {
+          increment = parseInt($('#channel_c_delay_step_size_1').val());
+        } else if ($("input[id='channel_c_delay_step_size_2']").is(':checked')) {
+          increment = parseInt($('#channel_c_delay_step_size_2').val());
+        } else if ($("input[id='channel_c_delay_step_size_3']").is(':checked')) {
+          increment = parseInt($('#channel_c_delay_step_size_3').val());
         }
         if ((current_value + increment) < max_delay) {
           $('#channel_c_delay_value').val(
@@ -231,14 +231,14 @@
       current_value = parseInt($('#channel_c_delay_value').val());
       if (current_value != min_delay) {
         
-        if ($("input[id='channel_c_step_size_0']").is(':checked')) {
-          decrement = parseInt($('#channel_c_step_size_0').val());
-        } else if ($("input[id='channel_c_step_size_1']").is(':checked')) {
-          decrement = parseInt($('#channel_c_step_size_1').val());
-        } else if ($("input[id='channel_c_step_size_2']").is(':checked')) {
-          decrement = parseInt($('#channel_c_step_size_2').val());
-        } else if ($("input[id='channel_c_step_size_3']").is(':checked')) {
-          decrement = parseInt($('#channel_c_step_size_3').val());
+        if ($("input[id='channel_c_delay_step_size_0']").is(':checked')) {
+          decrement = parseInt($('#channel_c_delay_step_size_0').val());
+        } else if ($("input[id='channel_c_delay_step_size_1']").is(':checked')) {
+          decrement = parseInt($('#channel_c_delay_step_size_1').val());
+        } else if ($("input[id='channel_c_delay_step_size_2']").is(':checked')) {
+          decrement = parseInt($('#channel_c_delay_step_size_2').val());
+        } else if ($("input[id='channel_c_delay_step_size_3']").is(':checked')) {
+          decrement = parseInt($('#channel_c_delay_step_size_3').val());
         }
         if ((current_value - decrement) > min_delay) {
           $('#channel_c_delay_value').val(
@@ -262,14 +262,14 @@
       current_value = parseInt($('#channel_d_delay_value').val());
       if (current_value != max_delay) {
         
-        if ($("input[id='channel_d_step_size_0']").is(':checked')) {
-          increment = parseInt($('#channel_d_step_size_0').val());
-        } else if ($("input[id='channel_d_step_size_1']").is(':checked')) {
-          increment = parseInt($('#channel_d_step_size_1').val());
-        } else if ($("input[id='channel_d_step_size_2']").is(':checked')) {
-          increment = parseInt($('#channel_d_step_size_2').val());
-        } else if ($("input[id='channel_d_step_size_3']").is(':checked')) {
-          increment = parseInt($('#channel_d_step_size_3').val());
+        if ($("input[id='channel_d_delay_step_size_0']").is(':checked')) {
+          increment = parseInt($('#channel_d_delay_step_size_0').val());
+        } else if ($("input[id='channel_d_delay_step_size_1']").is(':checked')) {
+          increment = parseInt($('#channel_d_delay_step_size_1').val());
+        } else if ($("input[id='channel_d_delay_step_size_2']").is(':checked')) {
+          increment = parseInt($('#channel_d_delay_step_size_2').val());
+        } else if ($("input[id='channel_d_delay_step_size_3']").is(':checked')) {
+          increment = parseInt($('#channel_d_delay_step_size_3').val());
         }
         if ((current_value + increment) < max_delay) {
           $('#channel_d_delay_value').val(
@@ -293,14 +293,14 @@
       current_value = parseInt($('#channel_d_delay_value').val());
       if (current_value != min_delay) {
         
-        if ($("input[id='channel_d_step_size_0']").is(':checked')) {
-          decrement = parseInt($('#channel_d_step_size_0').val());
-        } else if ($("input[id='channel_d_step_size_1']").is(':checked')) {
-          decrement = parseInt($('#channel_d_step_size_1').val());
-        } else if ($("input[id='channel_d_step_size_2']").is(':checked')) {
-          decrement = parseInt($('#channel_d_step_size_2').val());
-        } else if ($("input[id='channel_d_step_size_3']").is(':checked')) {
-          decrement = parseInt($('#channel_d_step_size_3').val());
+        if ($("input[id='channel_d_delay_step_size_0']").is(':checked')) {
+          decrement = parseInt($('#channel_d_delay_step_size_0').val());
+        } else if ($("input[id='channel_d_delay_step_size_1']").is(':checked')) {
+          decrement = parseInt($('#channel_d_delay_step_size_1').val());
+        } else if ($("input[id='channel_d_delay_step_size_2']").is(':checked')) {
+          decrement = parseInt($('#channel_d_delay_step_size_2').val());
+        } else if ($("input[id='channel_d_delay_step_size_3']").is(':checked')) {
+          decrement = parseInt($('#channel_d_delay_step_size_3').val());
         }
         if ((current_value - decrement) > min_delay) {
           $('#channel_d_delay_value').val(

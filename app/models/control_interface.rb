@@ -27,12 +27,13 @@ class ControlInterface
     @configuration_table[:channel_a_width_unit] = DEFAULT_PN_WIDTH_UNIT
     @configuration_table[:channel_a_width_min] = DEFAULT_PN_WIDTH_MIN
     @configuration_table[:channel_a_width_max] = DEFAULT_PN_WIDTH_MAX
+    @configuration_table[:channel_a_width_step_size] = DEFAULT_WIDTH_STEP_SIZE
     @configuration_table[:channel_a_delay] = DEFAULT_PN_DELAY
     @configuration_table[:channel_a_delay_unit] = DEFAULT_PN_DELAY_UNIT
     @configuration_table[:channel_a_delay_min] = DEFAULT_PN_DELAY_MIN
     @configuration_table[:channel_a_delay_max] = DEFAULT_PN_DELAY_MAX
     @configuration_table[:channel_a_polarity] = DEFAULT_PN_POLARITY
-    @configuration_table[:channel_a_step_size] = DEFAULT_DELAY_STEP_SIZE
+    @configuration_table[:channel_a_delay_step_size] = DEFAULT_DELAY_STEP_SIZE
 
     @configuration_table[:channel_b_name_custom] = "Channel B"
     @configuration_table[:channel_b_name_official] = "Channel B"
@@ -40,12 +41,13 @@ class ControlInterface
     @configuration_table[:channel_b_width_unit] = DEFAULT_PN_WIDTH_UNIT
     @configuration_table[:channel_b_width_min] = DEFAULT_PN_WIDTH_MIN
     @configuration_table[:channel_b_width_max] = DEFAULT_PN_WIDTH_MAX
+    @configuration_table[:channel_b_width_step_size] = DEFAULT_WIDTH_STEP_SIZE
     @configuration_table[:channel_b_delay] = DEFAULT_PN_DELAY
     @configuration_table[:channel_b_delay_unit] = DEFAULT_PN_DELAY_UNIT
     @configuration_table[:channel_b_delay_min] = DEFAULT_PN_DELAY_MIN
     @configuration_table[:channel_b_delay_max] = DEFAULT_PN_DELAY_MAX
     @configuration_table[:channel_b_polarity] = DEFAULT_PN_POLARITY
-    @configuration_table[:channel_b_step_size] = DEFAULT_DELAY_STEP_SIZE
+    @configuration_table[:channel_b_delay_step_size] = DEFAULT_DELAY_STEP_SIZE
 
     @configuration_table[:channel_c_name_custom] = "Channel C"
     @configuration_table[:channel_c_name_official] = "Channel C"
@@ -53,12 +55,13 @@ class ControlInterface
     @configuration_table[:channel_c_width_unit] = DEFAULT_PN_WIDTH_UNIT
     @configuration_table[:channel_c_width_min] = DEFAULT_PN_WIDTH_MIN
     @configuration_table[:channel_c_width_max] = DEFAULT_PN_WIDTH_MAX
+    @configuration_table[:channel_c_width_step_size] = DEFAULT_WIDTH_STEP_SIZE
     @configuration_table[:channel_c_delay] = DEFAULT_PN_DELAY
     @configuration_table[:channel_c_delay_unit] = DEFAULT_PN_DELAY_UNIT
     @configuration_table[:channel_c_delay_min] = DEFAULT_PN_DELAY_MIN
     @configuration_table[:channel_c_delay_max] = DEFAULT_PN_DELAY_MAX
     @configuration_table[:channel_c_polarity] = DEFAULT_PN_POLARITY
-    @configuration_table[:channel_c_step_size] = DEFAULT_DELAY_STEP_SIZE
+    @configuration_table[:channel_c_delay_step_size] = DEFAULT_DELAY_STEP_SIZE
 
     @configuration_table[:channel_d_name_custom] = "Channel D"
     @configuration_table[:channel_d_name_official] = "Channel D"
@@ -66,15 +69,16 @@ class ControlInterface
     @configuration_table[:channel_d_width_unit] = DEFAULT_PN_WIDTH_UNIT
     @configuration_table[:channel_d_width_min] = DEFAULT_PN_WIDTH_MIN
     @configuration_table[:channel_d_width_max] = DEFAULT_PN_WIDTH_MAX
+    @configuration_table[:channel_d_width_step_size] = DEFAULT_WIDTH_STEP_SIZE
     @configuration_table[:channel_d_delay] = DEFAULT_PN_DELAY
     @configuration_table[:channel_d_delay_unit] = DEFAULT_PN_DELAY_UNIT
     @configuration_table[:channel_d_delay_min] = DEFAULT_PN_DELAY_MIN
     @configuration_table[:channel_d_delay_max] = DEFAULT_PN_DELAY_MAX
     @configuration_table[:channel_d_polarity] = DEFAULT_PN_POLARITY
-    @configuration_table[:channel_d_step_size] = DEFAULT_DELAY_STEP_SIZE
+    @configuration_table[:channel_d_delay_step_size] = DEFAULT_DELAY_STEP_SIZE
 
-    @configuration_table[:delay_step_size_list] = ["1", "10", "100", "1000"]
     @configuration_table[:width_step_size_list] = ["0.01", "0.1", "1", "10"]
+    @configuration_table[:delay_step_size_list] = ["1", "10", "100", "1000"]
     @configuration_table[:command_history] = []
     @configuration_table[:response_history] = []
     @configuration_table[:response_time] = ""

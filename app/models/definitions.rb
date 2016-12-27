@@ -5,16 +5,16 @@ module Definitions
                   "last_delay_tab" => :last_delay_tab,
                   "channel_a_delay" => :channel_a_delay,
                   "channel_a_name_custom" => :channel_a_name_custom,
-                  "channel_a_step_size" => :channel_a_step_size,
+                  "channel_a_delay_step_size" => :channel_a_delay_step_size,
                   "channel_b_delay" => :channel_b_delay,
                   "channel_b_name_custom" => :channel_b_name_custom,
-                  "channel_b_step_size" => :channel_b_step_size,
+                  "channel_b_delay_step_size" => :channel_b_delay_step_size,
                   "channel_c_delay" => :channel_c_delay,
                   "channel_c_name_custom" => :channel_c_name_custom,
-                  "channel_c_step_size" => :channel_c_step_size,
+                  "channel_c_delay_step_size" => :channel_c_delay_step_size,
                   "channel_d_delay" => :channel_d_delay,
                   "channel_d_name_custom" => :channel_d_name_custom,
-                  "channel_d_step_size" => :channel_d_step_size
+                  "channel_d_delay_step_size" => :channel_d_delay_step_size
                   }
   MSG_NOT_CONNECTED = "Not Connected"
   MSG_CONNECTED = "Connected"
@@ -52,6 +52,7 @@ module Definitions
   DEFAULT_PN_WIDTH_MAX = "100"  #us
   DEFAULT_PN_POLARITY = "NORM"
   DEFAULT_DELAY_STEP_SIZE = "10"  #ns
+  DEFAULT_WIDTH_STEP_SIZE = "2"  #us
 
   #Serial Command Definitions:
   MAIN_OUTPUT_ON = ":INST:STATE ON"
