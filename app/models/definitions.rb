@@ -8,7 +8,13 @@ module Definitions
                   "channel_a_step_size" => :channel_a_step_size,
                   "channel_b_delay" => :channel_b_delay,
                   "channel_b_name_custom" => :channel_b_name_custom,
-                  "channel_b_step_size" => :channel_b_step_size
+                  "channel_b_step_size" => :channel_b_step_size,
+                  "channel_c_delay" => :channel_c_delay,
+                  "channel_c_name_custom" => :channel_c_name_custom,
+                  "channel_c_step_size" => :channel_c_step_size,
+                  "channel_d_delay" => :channel_d_delay,
+                  "channel_d_name_custom" => :channel_d_name_custom,
+                  "channel_d_step_size" => :channel_d_step_size
                   }
   MSG_NOT_CONNECTED = "Not Connected"
   MSG_CONNECTED = "Connected"
@@ -22,7 +28,9 @@ module Definitions
   CONVERT_TO_NANOSECOND = 0.000000001
 
   INTERFACE_SERIAL_CONTROL = {:channel_a_delay => "set_channel_a_delay",
-                              :channel_b_delay => "set_channel_b_delay"
+                              :channel_b_delay => "set_channel_b_delay",
+                              :channel_c_delay => "set_channel_c_delay",
+                              :channel_d_delay => "set_channel_d_delay"
                               }
 
   #Default value definitions

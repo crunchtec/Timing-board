@@ -52,15 +52,35 @@ require_relative '../models/definitions'
     send_serial_command(serial_port, control_interface, command)
   end
 
+  def set_channel_c_delay(serial_port, control_interface)
+    command = "#{P3_DELAY} #{control_interface.read(:channel_c_delay)}e-9"
+    send_serial_command(serial_port, control_interface, command)
+    get_channel_c_delay(serial_port, control_interface)
+    puts command.inspect
+  end
+
+  def get_channel_c_delay(serial_port, control_interface)
+    command = "#{P3_DELAY}?"
+    send_serial_command(serial_port, control_interface, command)
+  end
+
+  def set_channel_d_delay(serial_port, control_interface)
+    command = "#{P4_DELAY} #{control_interface.read(:channel_d_delay)}e-9"
+    send_serial_command(serial_port, control_interface, command)
+    get_channel_d_delay(serial_port, control_interface)
+    puts command.inspect
+  end
+
+  def get_channel_d_delay(serial_port, control_interface)
+    command = "#{P4_DELAY}?"
+    send_serial_command(serial_port, control_interface, command)
+  end
+
   def changed(control_interface, params)
     change_list = {}
     params.keys.map do |param|
       parameter = PARAM_CONTROL[param]
       form_value = params[param]
-      # puts control_interface
-      # puts "Control Interface Channel A name custom: #{control_interface.channel_a_name_custom}"
-      # puts "Control Interface Channel A name custom: #{control_interface.channel_a_delay}"
-      # puts "Control Interface Channel A name custom: #{control_interface.main_switch_status}"
       if !control_interface.same?(parameter, form_value)
         control_interface.update(parameter, form_value)
         change_list[parameter] = control_interface.read(parameter)
@@ -89,6 +109,8 @@ require_relative '../models/definitions'
       control_interface.update(:main_interface_access, ENABLED)
     end
     {
+      :main_switch => control_interface.main_switch_status,
+      :main_switch_status => control_interface.main_switch_status,
       :current_view => control_interface.read(:current_view),
       :serial_response => control_interface.read(:response_history).first || "",
       :command_history => control_interface.read(:command_history),
@@ -112,7 +134,19 @@ require_relative '../models/definitions'
       :channel_b_step_size => control_interface.read(:channel_b_step_size),
       :channel_b_delay_min => control_interface.read(:channel_b_delay_min),
       :channel_b_delay_max => control_interface.read(:channel_b_delay_max),
-      :channel_b_name_custom => control_interface.read(:channel_b_name_custom)
+      :channel_b_name_custom => control_interface.read(:channel_b_name_custom),
+      :channel_c_delay => control_interface.read(:channel_c_delay),
+      :channel_c_delay_unit => control_interface.read(:channel_c_delay_unit),
+      :channel_c_step_size => control_interface.read(:channel_c_step_size),
+      :channel_c_delay_min => control_interface.read(:channel_c_delay_min),
+      :channel_c_delay_max => control_interface.read(:channel_c_delay_max),
+      :channel_c_name_custom => control_interface.read(:channel_c_name_custom),
+      :channel_d_delay => control_interface.read(:channel_d_delay),
+      :channel_d_delay_unit => control_interface.read(:channel_d_delay_unit),
+      :channel_d_step_size => control_interface.read(:channel_d_step_size),
+      :channel_d_delay_min => control_interface.read(:channel_d_delay_min),
+      :channel_d_delay_max => control_interface.read(:channel_d_delay_max),
+      :channel_d_name_custom => control_interface.read(:channel_d_name_custom)
     }
     
     # puts "!!!!!!! Value of reconnect button: #{output[:reconnect_button_show]}"
@@ -126,9 +160,9 @@ require_relative '../models/definitions'
     @interface = rebuild_control_interface(serial_port, control_interface)
 
     erb:index, :locals => {
-                          :response_time => control_interface.read(:response_time),
-                          :main_switch => control_interface.main_switch_status,
-                          :main_switch_status => control_interface.main_switch_status
+                          # :response_time => control_interface.read(:response_time),
+                          # :main_switch => control_interface.main_switch_status,
+                          # :main_switch_status => control_interface.main_switch_status
                           }
   end
 

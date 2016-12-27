@@ -5,8 +5,8 @@
         <form id = "control-interface-main-switch" action = "/mainswitch" method = "POST">
           <div class = "row col-md-12 main-switch-bar text-center">
             <label>Main output: </label>
-            <input id = "main-switch" type = "checkbox" data-toggle = "toggle" <%= main_switch %> data-width = "300px" name = "main_switch" <%= @interface[:main_interface_access] %> />
-            <input id = "main-switch-status" type = "hidden" value = "<%= main_switch_status %>" name = "main_switch_status" />
+            <input id = "main-switch" type = "checkbox" data-toggle = "toggle" <%= @interface[:main_switch] %> data-width = "300px" name = "main_switch" <%= @interface[:main_interface_access] %> />
+            <input id = "main-switch-status" type = "hidden" value = "<%= @interface[:main_switch_status] %>" name = "main_switch_status" />
           </div>
         </form>
 

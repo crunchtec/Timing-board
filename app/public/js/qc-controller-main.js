@@ -40,6 +40,12 @@
     $('#ch-b-control-interface').change(function() {
       $(this).submit();
     });
+    $('#ch-c-control-interface').change(function() {
+      $(this).submit();
+    });
+    $('#ch-d-control-interface').change(function() {
+      $(this).submit();
+    });
     $('#command-history').change(function() {
       var command_index = 0
       $('#command-history option:selected').each(function(){
@@ -184,8 +190,129 @@
       }
     });
 
+    $('#channel_c_delay_up').click(function(){
+      var current_value = 0
+      var increment = 0
+      var min_delay = 0
+      var max_delay = 0
+      min_delay = parseInt($('#channel_c_delay_value').attr('min'));
+      max_delay = parseInt($('#channel_c_delay_value').attr('max'));
+      current_value = parseInt($('#channel_c_delay_value').val());
+      if (current_value != max_delay) {
+        
+        if ($("input[id='channel_c_step_size_0']").is(':checked')) {
+          increment = parseInt($('#channel_c_step_size_0').val());
+        } else if ($("input[id='channel_c_step_size_1']").is(':checked')) {
+          increment = parseInt($('#channel_c_step_size_1').val());
+        } else if ($("input[id='channel_c_step_size_2']").is(':checked')) {
+          increment = parseInt($('#channel_c_step_size_2').val());
+        } else if ($("input[id='channel_c_step_size_3']").is(':checked')) {
+          increment = parseInt($('#channel_c_step_size_3').val());
+        }
+        if ((current_value + increment) < max_delay) {
+          $('#channel_c_delay_value').val(
+            parseInt($('#channel_c_delay_value').val()) + increment
+          );
+        } else {
+          $('#channel_c_delay_value').val(max_delay);        
+        }
+        $('#ch-c-control-interface').submit();
 
+      }
+    });
 
+    $('#channel_c_delay_down').click(function(){
+      var current_value = 0
+      var decrement = 0
+      var min_delay = 0
+      var max_delay = 0
+      min_delay = parseInt($('#channel_c_delay_value').attr('min'));
+      max_delay = parseInt($('#channel_c_delay_value').attr('max'));
+      current_value = parseInt($('#channel_c_delay_value').val());
+      if (current_value != min_delay) {
+        
+        if ($("input[id='channel_c_step_size_0']").is(':checked')) {
+          decrement = parseInt($('#channel_c_step_size_0').val());
+        } else if ($("input[id='channel_c_step_size_1']").is(':checked')) {
+          decrement = parseInt($('#channel_c_step_size_1').val());
+        } else if ($("input[id='channel_c_step_size_2']").is(':checked')) {
+          decrement = parseInt($('#channel_c_step_size_2').val());
+        } else if ($("input[id='channel_c_step_size_3']").is(':checked')) {
+          decrement = parseInt($('#channel_c_step_size_3').val());
+        }
+        if ((current_value - decrement) > min_delay) {
+          $('#channel_c_delay_value').val(
+            parseInt($('#channel_c_delay_value').val()) - decrement
+          );
+        } else {
+          $('#channel_c_delay_value').val(min_delay);
+        }
+        $('#ch-c-control-interface').submit();
+
+      }
+    });
+
+    $('#channel_d_delay_up').click(function(){
+      var current_value = 0
+      var increment = 0
+      var min_delay = 0
+      var max_delay = 0
+      min_delay = parseInt($('#channel_d_delay_value').attr('min'));
+      max_delay = parseInt($('#channel_d_delay_value').attr('max'));
+      current_value = parseInt($('#channel_d_delay_value').val());
+      if (current_value != max_delay) {
+        
+        if ($("input[id='channel_d_step_size_0']").is(':checked')) {
+          increment = parseInt($('#channel_d_step_size_0').val());
+        } else if ($("input[id='channel_d_step_size_1']").is(':checked')) {
+          increment = parseInt($('#channel_d_step_size_1').val());
+        } else if ($("input[id='channel_d_step_size_2']").is(':checked')) {
+          increment = parseInt($('#channel_d_step_size_2').val());
+        } else if ($("input[id='channel_d_step_size_3']").is(':checked')) {
+          increment = parseInt($('#channel_d_step_size_3').val());
+        }
+        if ((current_value + increment) < max_delay) {
+          $('#channel_d_delay_value').val(
+            parseInt($('#channel_d_delay_value').val()) + increment
+          );
+        } else {
+          $('#channel_d_delay_value').val(max_delay);        
+        }
+        $('#ch-d-control-interface').submit();
+
+      }
+    });
+
+    $('#channel_d_delay_down').click(function(){
+      var current_value = 0
+      var decrement = 0
+      var min_delay = 0
+      var max_delay = 0
+      min_delay = parseInt($('#channel_d_delay_value').attr('min'));
+      max_delay = parseInt($('#channel_d_delay_value').attr('max'));
+      current_value = parseInt($('#channel_d_delay_value').val());
+      if (current_value != min_delay) {
+        
+        if ($("input[id='channel_d_step_size_0']").is(':checked')) {
+          decrement = parseInt($('#channel_d_step_size_0').val());
+        } else if ($("input[id='channel_d_step_size_1']").is(':checked')) {
+          decrement = parseInt($('#channel_d_step_size_1').val());
+        } else if ($("input[id='channel_d_step_size_2']").is(':checked')) {
+          decrement = parseInt($('#channel_d_step_size_2').val());
+        } else if ($("input[id='channel_d_step_size_3']").is(':checked')) {
+          decrement = parseInt($('#channel_d_step_size_3').val());
+        }
+        if ((current_value - decrement) > min_delay) {
+          $('#channel_d_delay_value').val(
+            parseInt($('#channel_d_delay_value').val()) - decrement
+          );
+        } else {
+          $('#channel_d_delay_value').val(min_delay);
+        }
+        $('#ch-d-control-interface').submit();
+
+      }
+    });
 
 
   });
