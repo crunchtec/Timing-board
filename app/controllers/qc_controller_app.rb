@@ -25,13 +25,15 @@ require_relative '../models/definitions'
   end
 
   def set_channel_a_delay(serial_port, control_interface)
-    command = ":PULSE1:DELAY #{control_interface.read(:channel_a_delay)}e-9"
+    command = "#{P1_DELAY} #{control_interface.read(:channel_a_delay)}e-9"
     send_serial_command(serial_port, control_interface, command)
+    get_channel_a_delay(serial_port, control_interface)
     puts command.inspect
   end
 
   def get_channel_a_delay(serial_port, control_interface)
-    command = ":PULSE1:DELAY?"
+    command = "#{P1_DELAY}?"
+    send_serial_command(serial_port, control_interface, command)
   end
 
   def changed(control_interface, params)

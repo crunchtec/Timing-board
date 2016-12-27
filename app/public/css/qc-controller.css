@@ -19,6 +19,12 @@ input#channel_a_delay_value::-webkit-outer-spin-button, input#channel_a_delay_va
   margin: 0;
 }
 
-#control-interface table {
-  border-spacing: 10px;
+.delay-steps {
+  padding-left: 20px;
+}
+
+.delay-unit {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 3em;
 }

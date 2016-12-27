@@ -19,16 +19,16 @@ class ControlInterface
     @configuration_table[:main_switch_status] = "unchecked"
     @configuration_table[:channel_a_name_custom] = "Channel A"
     @configuration_table[:channel_a_name_official] = "Channel A"
-    @configuration_table[:channel_a_width] = "2"
-    @configuration_table[:channel_a_width_unit] = "us"
-    @configuration_table[:channel_a_width_min] = "1"
-    @configuration_table[:channel_a_width_max] = "100"
-    @configuration_table[:channel_a_delay] = "100"
-    @configuration_table[:channel_a_delay_unit] = "ns"
-    @configuration_table[:channel_a_delay_min] = "0"
-    @configuration_table[:channel_a_delay_max] = "100000"
-    @configuration_table[:channel_a_polarity] = "NORM"
-    @configuration_table[:step_size] = "10"
+    @configuration_table[:channel_a_width] = DEFAULT_PN_WIDTH
+    @configuration_table[:channel_a_width_unit] = DEFAULT_PN_WIDTH_UNIT
+    @configuration_table[:channel_a_width_min] = DEFAULT_PN_WIDTH_MIN
+    @configuration_table[:channel_a_width_max] = DEFAULT_PN_WIDTH_MAX
+    @configuration_table[:channel_a_delay] = DEFAULT_PN_DELAY
+    @configuration_table[:channel_a_delay_unit] = DEFAULT_PN_DELAY_UNIT
+    @configuration_table[:channel_a_delay_min] = DEFAULT_PN_DELAY_MIN
+    @configuration_table[:channel_a_delay_max] = DEFAULT_PN_DELAY_MAX
+    @configuration_table[:channel_a_polarity] = DEFAULT_PN_POLARITY
+    @configuration_table[:step_size] = DEFAULT_DELAY_STEP_SIZE
     @configuration_table[:step_size_list] = ["1", "10", "100", "1000"]
     @configuration_table[:command_history] = []
     @configuration_table[:response_history] = []
@@ -86,6 +86,7 @@ class ControlInterface
 
   def empty_command_history
     @configuration_table[:command_history].clear
+    @configuration_table[:response_history].clear
   end
 
 end
