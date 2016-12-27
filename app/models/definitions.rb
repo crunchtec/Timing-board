@@ -8,9 +8,11 @@ module Definitions
                   "channel_a_delay_step_size" => :channel_a_delay_step_size,
                   "channel_a_width" => :channel_a_width,
                   "channel_a_width_step_size" => :channel_a_width_step_size,
-                  "channel_b_delay" => :channel_b_delay,
                   "channel_b_name_custom" => :channel_b_name_custom,
+                  "channel_b_delay" => :channel_b_delay,
                   "channel_b_delay_step_size" => :channel_b_delay_step_size,
+                  "channel_b_width" => :channel_b_width,
+                  "channel_b_width_step_size" => :channel_b_width_step_size,
                   "channel_c_delay" => :channel_c_delay,
                   "channel_c_name_custom" => :channel_c_name_custom,
                   "channel_c_delay_step_size" => :channel_c_delay_step_size,
@@ -33,7 +35,8 @@ module Definitions
   INTERFACE_SERIAL_CONTROL = {:channel_a_delay => "set_channel_a_delay",
                               :channel_b_delay => "set_channel_b_delay",
                               :channel_c_delay => "set_channel_c_delay",
-                              :channel_d_delay => "set_channel_d_delay"
+                              :channel_d_delay => "set_channel_d_delay",
+                              :channel_a_width => "set_channel_a_width"
                               }
 
   #Default value definitions

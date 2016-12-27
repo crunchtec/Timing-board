@@ -76,6 +76,25 @@ require_relative '../models/definitions'
     send_serial_command(serial_port, control_interface, command)
   end
 
+  def turn_main_output_off(serial_port, control_interface)
+    control_interface.update(:main_switch_status, "unchecked")
+    command = main_switch_command(control_interface.main_switch_status)
+    send_serial_command(serial_port, control_interface, command)
+  end
+
+  def set_channel_a_width(serial_port, control_interface)
+    turn_main_output_off(serial_port, control_interface)
+    command = "#{P1_WIDTH} #{control_interface.read(:channel_a_width)}e-6"
+    send_serial_command(serial_port, control_interface, command)
+    get_channel_a_width(serial_port, control_interface)
+    puts command.inspect
+  end
+
+  def get_channel_a_width(serial_port, control_interface)
+    command = "#{P1_WIDTH}?"
+    send_serial_command(serial_port, control_interface, command)
+  end
+
   def changed(control_interface, params)
     change_list = {}
     params.keys.map do |param|
@@ -140,6 +159,11 @@ require_relative '../models/definitions'
       :channel_b_delay_step_size => control_interface.read(:channel_b_delay_step_size),
       :channel_b_delay_min => control_interface.read(:channel_b_delay_min),
       :channel_b_delay_max => control_interface.read(:channel_b_delay_max),
+      :channel_b_width => control_interface.read(:channel_b_width),
+      :channel_b_width_unit => control_interface.read(:channel_b_width_unit),
+      :channel_b_width_step_size => control_interface.read(:channel_b_width_step_size),
+      :channel_b_width_min => control_interface.read(:channel_b_width_min),
+      :channel_b_width_max => control_interface.read(:channel_b_width_max),
       :channel_b_name_custom => control_interface.read(:channel_b_name_custom),
       :channel_c_delay => control_interface.read(:channel_c_delay),
       :channel_c_delay_unit => control_interface.read(:channel_c_delay_unit),
@@ -165,11 +189,12 @@ require_relative '../models/definitions'
 
     @interface = rebuild_control_interface(serial_port, control_interface)
 
-    erb:index, :locals => {
-                          # :response_time => control_interface.read(:response_time),
-                          # :main_switch => control_interface.main_switch_status,
-                          # :main_switch_status => control_interface.main_switch_status
-                          }
+    erb:index
+    # , :locals => {
+    #                       # :response_time => control_interface.read(:response_time),
+    #                       # :main_switch => control_interface.main_switch_status,
+    #                       # :main_switch_status => control_interface.main_switch_status
+    #                       }
   end
 
   post "/" do
@@ -182,12 +207,11 @@ require_relative '../models/definitions'
   post "/send" do
     change_list = changed(control_interface, params)
     serial_response = send_serial_command(serial_port, control_interface, params["command"])
-    # control_interface.update(:last_response_from_qc_board, serial_response)
-    # control_interface.add_to_command_history(params["command"])
     redirect '/'
   end
 
   post "/mainswitch" do
+    # require 'pry'; binding.pry
     change_list = changed(control_interface, params)
     command = main_switch_command(control_interface.main_switch_status)
     serial_response = send_serial_command(serial_port, control_interface, command)
@@ -214,11 +238,8 @@ require_relative '../models/definitions'
     redirect "/"
   end
 
-  # private
-
   def send_serial_command(serial_port, control_interface, command)
     serial_response = serial_port.write(command)
-    # control_interface.update(:last_response_from_qc_board, serial_response)
     control_interface.add_to_command_history(command, serial_response)
     return serial_response
   end

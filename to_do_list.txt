@@ -14,3 +14,4 @@
 14. Implement sending initial config list to QC controller
 15. Remove last serial response from bottom status bar
 16. Fix corner case when deleting number completely from text box
+17. Main switch status on interface lost when switching between width and view
