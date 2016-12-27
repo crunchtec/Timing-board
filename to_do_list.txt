@@ -6,6 +6,10 @@
 6. Load settings from file
 7. Control interface debouncing
 8. COMPLETED: HTTP POST instead of HTTP GET => COMPLETED
-9. PARTIALLY COMPLETED: Implement delay config interface vs. command list => Channel A is functional
-10. Implement response history, matching to command history
-11. Limit command/response history to X
+9. COMPLETED: Implement delay config interface vs. command list => COMPLETED
+10. COMPLETED: Implement response history, matching to command history => COMPLETED
+11. COMPLETED: Limit command/response history to X => COMPLETED
+12. ONGOING: Implement width config interface vs. command list
+13. Implement MORE configuration options vs. command list
+14. Implement sending initial config list to QC controller
+15. Remove last serial response from bottom status bar
