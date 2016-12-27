@@ -10,7 +10,11 @@
           </div>
         </form>
 
-        <%= erb :delays %>
+        <% if @interface[:current_view].eql?("delay") %>
+          <%= erb :delays %>
+        <% elsif @interface[:current_view].eql?("width") %>
+          <%= erb :widths %>
+        <% end %>
 
 
       </div>

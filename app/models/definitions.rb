@@ -4,7 +4,7 @@ module Definitions
                   "main_switch" => :main_switch,
                   "channel_a_delay" => :channel_a_delay,
                   "channel_a_name_custom" => :channel_a_name_custom,
-                  "step_size" => :step_size}
+                  "channel_a_step_size" => :channel_a_step_size}
   MSG_NOT_CONNECTED = "Not Connected"
   MSG_CONNECTED = "Connected"
   HTML_HIDE = "hidden"
@@ -20,6 +20,7 @@ module Definitions
                               }
 
   #Default value definitions
+  DEFAULT_VIEW = "delay"
   DEFAULT_REP_RATE = "1000" #us
   DEFAULT_OSCILLATOR_SOURCE_P0_MODE = "INT"
   DEFAULT_OSCILLATOR_SOURCE_P0_RATE = "80"  #MHz
@@ -40,5 +41,12 @@ module Definitions
   #Serial Command Definitions:
   MAIN_OUTPUT_ON = ":INST:STATE ON"
   MAIN_OUTPUT_OFF = ":INST:STATE OFF"
-  P1_DELAY = ":PULSE:DELAY" #time OR ?
+  P1_DELAY = ":PULSE1:DELAY" #time OR ?
+  P2_DELAY = ":PULSE2:DELAY" #time OR ?
+  P3_DELAY = ":PULSE3:DELAY" #time OR ?
+  P4_DELAY = ":PULSE4:DELAY" #time OR ?
+  P1_MODE = ":PULSE1:POL" #config OR ?
+  P2_MODE = ":PULSE2:POL" #config OR ?
+  P3_MODE = ":PULSE3:POL" #config OR ?
+  P4_MODE = ":PULSE4:POL" #config OR ?
 end

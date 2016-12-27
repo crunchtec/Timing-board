@@ -16,7 +16,11 @@ require_relative '../models/definitions'
   control_interface = ControlInterface.new
   serial_port = SerialPort.new
   serial_port.connect
+  board_uninitialized = true
 
+  def initialize_board
+    puts "...initializing board..."
+  end
 
   def serial_control(serial_port, change_list, control_interface)
     change_list.keys.each do |change_item|
@@ -55,12 +59,17 @@ require_relative '../models/definitions'
 
   def rebuild_control_interface(serial_port, control_interface)
     if serial_port.sp.nil? || serial_port.closed?
+      control_interface.update(:board_uninitialized, true)
       control_interface.update(:serial_port_status, MSG_NOT_CONNECTED)
       control_interface.update(:serial_port_status_label, LABEL_DANGER)
       control_interface.update(:reconnect_button_show, HTML_SHOW)
       control_interface.update(:send_command_access, DISABLED)
       control_interface.update(:main_interface_access, DISABLED)
     else
+      if control_interface.read(:board_uninitialized)
+        initialize_board
+        control_interface.update(:board_uninitialized, false)
+      end
       control_interface.update(:serial_port_status, MSG_CONNECTED)
       control_interface.update(:serial_port_status_label, LABEL_SUCCESS)
       control_interface.update(:reconnect_button_show, HTML_HIDE)
@@ -78,12 +87,13 @@ require_relative '../models/definitions'
       :channel_a_delay => control_interface.read(:channel_a_delay),
       :channel_a_delay_unit => control_interface.read(:channel_a_delay_unit),
       :step_size_list => control_interface.read(:step_size_list),
-      :step_size => control_interface.read(:step_size),
+      :channel_a_step_size => control_interface.read(:channel_a_step_size),
       :channel_a_delay_min => control_interface.read(:channel_a_delay_min),
       :channel_a_delay_max => control_interface.read(:channel_a_delay_max),
       :command_history => control_interface.read(:command_history),
       :response_history => control_interface.read(:response_history),
-      :channel_a_name_custom => control_interface.read(:channel_a_name_custom)
+      :channel_a_name_custom => control_interface.read(:channel_a_name_custom),
+      :current_view => control_interface.read(:current_view)
     }
     
     # puts "!!!!!!! Value of reconnect button: #{output[:reconnect_button_show]}"
@@ -133,6 +143,16 @@ require_relative '../models/definitions'
   post "/retryserialport" do
     serial_port.connect
     redirect '/'
+  end
+
+  get "/seewidth" do
+    control_interface.update(:current_view, "width")
+    redirect "/"
+  end
+
+  get "/seedelay" do
+    control_interface.update(:current_view, "delay")
+    redirect "/"
   end
 
   # private

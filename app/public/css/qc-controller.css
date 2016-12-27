@@ -28,3 +28,7 @@ input#channel_a_delay_value::-webkit-outer-spin-button, input#channel_a_delay_va
   padding-right: 10px;
   font-size: 3em;
 }
+
+.change-view-button {
+  padding-left: 40px;
+}
