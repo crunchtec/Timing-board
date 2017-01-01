@@ -15,3 +15,4 @@
 15. Remove last serial response from bottom status bar
 16. Fix corner case when deleting number completely from text box
 17. COMPLETED: Fix Main switch status on interface lost when switching between width and view => COMPLETED
+18. Fix manual type in of number outside of min-max range

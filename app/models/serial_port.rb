@@ -39,7 +39,8 @@ class SerialPort
       patience(init_delay)
       command = "*IDN?"
       expected_value = ACCEPTABLE_SYSTEM_INFO
-      write_until(command, expected_value, MAX_NO_OF_RETRIES)
+      connection_result = write_until(command, expected_value, MAX_NO_OF_RETRIES)
+      puts connection_result.inspect
     end
   end
 
@@ -52,10 +53,13 @@ class SerialPort
   end
 
   def write_until(command, expected_return_value, no_of_retries)
+    binding.pry
     retry_counter = 0
-    while !write(prepare(command).eql?(expected_return_value)) && (retry_counter < no_of_retries)
+    return_value = write(prepare(command))
+    while !return_value.eql?(expected_return_value) && (retry_counter < no_of_retries)
       patience(0.1 * retry_counter)
       retry_counter += 1
+    binding.pry
     end
     return "Exceeded number of retries. Initializing the QC Board FAILED!!!" unless retry_counter < no_of_retries
     "QC Board initialization COMPLETED..."
@@ -70,7 +74,9 @@ class SerialPort
     end
     if sp_error.nil?
       patience(write_delay)
-      read
+      response = read
+      puts "QC board response: #{response}"
+      response
     end
   end
 
